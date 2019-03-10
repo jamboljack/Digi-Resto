@@ -4,90 +4,156 @@ $uri = $this->uri->segment(2);
 if ($uri == 'home') {
     $dashboard     = 'active';
     $meta          = '';
+    $kontak        = '';
     $master        = '';
     $span_master_1 = '';
     $span_master_2 = '';
+    $slider        = '';
     $kategori      = '';
     $meja          = '';
     $menu_makanan  = '';
     $order         = '';
+    $social        = '';
     $users         = '';
 } elseif ($uri == 'meta') {
     $dashboard     = '';
     $meta          = 'active';
+    $kontak        = '';
     $master        = '';
     $span_master_1 = '';
     $span_master_2 = '';
+    $slider        = '';
     $kategori      = '';
     $meja          = '';
     $menu_makanan  = '';
     $order         = '';
+    $social        = '';
+    $users         = '';
+} elseif ($uri == 'kontak') {
+    $dashboard     = '';
+    $meta          = '';
+    $kontak        = 'active';
+    $master        = '';
+    $span_master_1 = '';
+    $span_master_2 = '';
+    $slider        = '';
+    $kategori      = '';
+    $meja          = '';
+    $menu_makanan  = '';
+    $order         = '';
+    $social        = '';
+    $users         = '';
+} elseif ($uri == 'slider') {
+    $dashboard     = '';
+    $meta          = '';
+    $kontak        = '';
+    $master        = 'active open';
+    $span_master_1 = '<span class="selected"></span>';
+    $span_master_2 = 'open';
+    $slider        = 'active';
+    $kategori      = '';
+    $meja          = '';
+    $menu_makanan  = '';
+    $order         = '';
+    $social        = '';
     $users         = '';
 } elseif ($uri == 'kategori') {
     $dashboard     = '';
     $meta          = '';
+    $kontak        = '';
     $master        = 'active open';
     $span_master_1 = '<span class="selected"></span>';
     $span_master_2 = 'open';
+    $slider        = '';
     $kategori      = 'active';
     $meja          = '';
     $menu_makanan  = '';
     $order         = '';
+    $social        = '';
     $users         = '';
 } elseif ($uri == 'meja') {
     $dashboard     = '';
     $meta          = '';
+    $kontak        = '';
     $master        = 'active open';
     $span_master_1 = '<span class="selected"></span>';
     $span_master_2 = 'open';
+    $slider        = '';
     $kategori      = '';
     $meja          = 'active';
     $menu_makanan  = '';
     $order         = '';
+    $social        = '';
     $users         = '';
 } elseif ($uri == 'menu_makanan') {
     $dashboard     = '';
     $meta          = '';
+    $kontak        = '';
     $master        = 'active open';
     $span_master_1 = '<span class="selected"></span>';
     $span_master_2 = 'open';
+    $slider        = '';
     $kategori      = '';
     $meja          = '';
     $menu_makanan  = 'active';
     $order         = '';
+    $social        = '';
     $users         = '';
 } elseif ($uri == 'order') {
     $dashboard     = '';
     $meta          = '';
+    $kontak        = '';
     $master        = '';
     $span_master_1 = '';
     $span_master_2 = '';
+    $slider        = '';
     $kategori      = '';
     $meja          = '';
     $menu_makanan  = '';
     $order         = 'active';
+    $social        = '';
+    $users         = '';
+} elseif ($uri == 'social') {
+    $dashboard     = '';
+    $meta          = '';
+    $kontak        = '';
+    $master        = '';
+    $span_master_1 = '';
+    $span_master_2 = '';
+    $slider        = '';
+    $kategori      = '';
+    $meja          = '';
+    $menu_makanan  = '';
+    $order         = '';
+    $social        = 'active';
     $users         = '';
 } elseif ($uri == 'users') {
     $dashboard     = '';
     $meta          = '';
+    $kontak        = '';
     $master        = '';
     $span_master_1 = '';
     $span_master_2 = '';
+    $slider        = '';
     $kategori      = '';
     $meja          = '';
     $menu_makanan  = '';
     $order         = '';
+    $social        = '';
     $users         = 'active';
 } else {
     $dashboard     = '';
     $meta          = '';
+    $kontak        = '';
     $master        = '';
     $span_master_1 = '';
     $span_master_2 = '';
+    $slider        = '';
     $kategori      = '';
     $meja          = '';
     $menu_makanan  = '';
     $order         = '';
+    $social        = '';
     $users         = '';
 }
 ?>
@@ -108,6 +174,11 @@ if ($uri == 'home') {
             <li class="heading">
                 <h3 class="uppercase">MENU MASTER</h3>
             </li>
+            <li class="tooltips <?=$kontak;?>" data-container="body" data-placement="right" data-html="true" data-original-title="Kontak Kami">
+                <a href="<?=site_url('admin/kontak');?>">
+                    <i class="fa fa-phone"></i><span class="title"> Kontak Kami</span>
+                </a>
+            </li>
             <li class="<?=$master;?>">
                 <a href="#">
                     <i class="fa fa-folder-o"></i>
@@ -116,6 +187,9 @@ if ($uri == 'home') {
                     <span class="arrow <?=$span_master_2;?>"></span>
                 </a>
                 <ul class="sub-menu">
+                    <li class="<?=$slider;?>">
+                        <a href="<?=site_url('admin/slider');?>"><i class="fa fa-arrow-circle-o-right"></i> Slider</a>
+                    </li>
                     <li class="<?=$kategori;?>">
                         <a href="<?=site_url('admin/kategori');?>"><i class="fa fa-arrow-circle-o-right"></i> Kategori</a>
                     </li>
@@ -133,6 +207,14 @@ if ($uri == 'home') {
             <li class="tooltips <?=$order;?>" data-container="body" data-placement="right" data-html="true" data-original-title="Order Menu">
                 <a href="<?=site_url('admin/order');?>">
                     <i class="icon-notebook"></i><span class="title"> Order</span>
+                </a>
+            </li>
+            <li class="heading">
+                <h3 class="uppercase">ADDITIONAL</h3>
+            </li>
+            <li class="tooltips <?=$social;?>" data-container="body" data-placement="right" data-html="true" data-original-title="Social Media">
+                <a href="<?=site_url('admin/social');?>">
+                    <i class="fa fa-rss"></i><span class="title"> Social Media</span>
                 </a>
             </li>
             <li class="heading">

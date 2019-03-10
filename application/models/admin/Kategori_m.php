@@ -4,7 +4,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class Kategori_m extends CI_Model
 {
     public $table         = 'resto_kategori';
-    public $column_order  = array(null, null, 'kategori_nama');
+    public $column_order  = array(null, null, 'kategori_nama', null);
     public $column_search = array('kategori_nama');
     public $order         = array('kategori_nama' => 'asc');
 
@@ -71,6 +71,7 @@ class Kategori_m extends CI_Model
         $data = array(
             'kategori_nama'   => strtoupper(trim(stripHTMLtags($this->input->post('name', 'true')))),
             'kategori_seo'    => seo_title(trim(stripHTMLtags($this->input->post('name', 'true')))),
+            'kategori_icon'   => trim(stripHTMLtags($this->input->post('icon', 'true'))),
             'kategori_update' => date('Y-m-d H:i:s'),
         );
 
@@ -92,6 +93,7 @@ class Kategori_m extends CI_Model
         $data        = array(
             'kategori_nama'   => strtoupper(trim(stripHTMLtags($this->input->post('name', 'true')))),
             'kategori_seo'    => seo_title(trim(stripHTMLtags($this->input->post('name', 'true')))),
+            'kategori_icon'   => trim(stripHTMLtags($this->input->post('icon', 'true'))),
             'kategori_update' => date('Y-m-d H:i:s'),
         );
 

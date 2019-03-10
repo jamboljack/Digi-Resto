@@ -82,6 +82,7 @@
                                     <th width="5%"></th>
                                     <th width="5%">No</th>
                                     <th>Keterangan</th>
+                                    <th width="15%">Icon</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -117,7 +118,7 @@ $(document).ready(function() {
         },
         "columnDefs": [
         {
-            "targets": [ 0, 1],
+            "targets": [ 0, 1, 3],
             "orderable": false,
         },
         ],
@@ -159,11 +160,15 @@ $(document).ready(function() {
         focusInvalid: false,
         ignore: "",
         rules: {
-            name: { required: true }
+            name: { required: true },
+            icon: { required: true }
         },
         messages: {
             name: {
                 required :'Nama Kategori required'
+            },
+            icon: {
+                required :'Icon required'
             }
         },
         invalidHandler: function (event, validator) {
@@ -223,6 +228,7 @@ function edit_data(id) {
         success: function(data) {
             $('#id').val(data.kategori_id);
             $('#kategori_nama').val(data.kategori_nama);
+            $('#kategori_icon').val(data.kategori_icon);
             $('#formModalEdit').modal('show');
         },
         error: function (jqXHR, textStatus, errorThrown) {
@@ -242,11 +248,15 @@ $(document).ready(function() {
         focusInvalid: false,
         ignore: "",
         rules: {
-            name: { required: true }
+            name: { required: true },
+            icon: { required: true }
         },
         messages: {
             name: {
                 required :'Nama Kategori required'
+            },
+            icon: {
+                required :'Icon required'
             }
         },
         invalidHandler: function (event, validator) {
@@ -313,6 +323,12 @@ $(document).ready(function() {
                         <input type="text" class="form-control" placeholder="Input Nama Kategori" name="name" id="name" autocomplete="off">
                     </div>
                 </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label">Icon</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" placeholder="Input Icon" name="icon" id="icon" autocomplete="off">
+                    </div>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="submit" class="btn btn-success"><i class="fa fa-floppy-o"></i> Simpan</button>
@@ -337,6 +353,12 @@ $(document).ready(function() {
                     <label class="col-md-4 control-label">Nama Kategori</label>
                     <div class="col-md-8">
                         <input type="text" class="form-control" placeholder="Input Nama Kategori" name="name" id="kategori_nama" autocomplete="off">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label">Icon</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" placeholder="Input Icon" name="icon" id="kategori_icon" autocomplete="off">
                     </div>
                 </div>
             </div>

@@ -34,6 +34,7 @@ class Kategori extends MY_Controller
                         </a>';
             $row[]  = $no;
             $row[]  = $r->kategori_nama;
+            $row[]  = $r->kategori_icon;
             $data[] = $row;
         }
 

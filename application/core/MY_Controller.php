@@ -16,6 +16,14 @@ class MY_Controller extends CI_Controller
             redirect('login');
         }
     }
+
+    public function cek_auth_user()
+    {
+        if ($this->session->userdata('username_user') == '' || $this->session->userdata('username_user') == null) {
+            $_SESSION['redirect'] = current_url();
+            redirect('login-user');
+        }
+    }
 }
 
 /* End of file MY_Controller.php */
