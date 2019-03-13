@@ -20,7 +20,7 @@ $listKategori = $this->menu_m->select_kategori()->result();
                         <?php 
                         foreach($listKategori as $r) {
                         ?>
-                        <li class="menu-item "><a href="<?=site_url('kategori/tipe/'.$r->kategori_seo);?>"><i class="<?=$r->kategori_icon;?>"></i><?=ucwords(strtolower($r->kategori_nama));?></a></li>
+                        <li class="menu-item "><a href="<?=site_url('kategori/'.$r->kategori_seo);?>"><i class="<?=$r->kategori_icon;?>"></i><?=ucwords(strtolower($r->kategori_nama));?></a></li>
                         <?php } ?>
                     </ul>
                 </div>
@@ -54,7 +54,7 @@ $listKategori = $this->menu_m->select_kategori()->result();
                     <?php 
                     foreach($listKategori as $r) {
                     ?>
-                    <li class="menu-item "><a href="<?=site_url('kategori/tipe/'.$r->kategori_seo);?>"><i class="<?=$r->kategori_icon;?>"></i><?=ucwords(strtolower($r->kategori_nama));?></a></li>
+                    <li class="menu-item "><a href="<?=site_url('kategori/'.$r->kategori_seo);?>"><i class="<?=$r->kategori_icon;?>"></i><?=ucwords(strtolower($r->kategori_nama));?></a></li>
                     <?php } ?>
                 </ul>
             </nav>

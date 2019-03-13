@@ -16,8 +16,17 @@ $meta = $this->menu_m->select_meta()->row();
         <link rel="stylesheet" type="text/css" href="<?=base_url('frontend');?>/css/colors/red.css" media="all" />
         <link rel="stylesheet" type="text/css" href="<?=base_url('frontend');?>/css/jquery.mCustomScrollbar.min.css" media="all" />
       	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800%7CYanone+Kaffeesatz:200,300,400,700" rel="stylesheet">
-   </head>
-   <body class="page-template-template-homepage-v1 home-v1">
+    </head>
+    <?php 
+    if ($this->uri->segment(1) == '') {
+        $class = 'page-template-template-homepage-v1 home-v1';
+    } elseif ($this->uri->segment(1)=='kategori') {
+        $class = 'full-width grid-view columns-4 archive woocommerce-page';
+    } elseif ($this->uri->segment(1) == 'menuorder') {
+        $class = 'single-product style-1 woocommerce';
+    }
+    ?>
+   <body class="<?=$class;?>">
       	<div id="page" class="hfeed site">
         <?=$_header;?>
 		<?=$content;?>

@@ -32,12 +32,12 @@
                                 <div class="product-outer">
                                     <div class="product-inner">
                                         <div class="product-image-wrapper">
-                                            <a href="<?=site_url('menu/detail/'.$r->menu_seo);?>" class="woocommerce-LoopProduct-link">
+                                            <a href="<?=site_url('menuorder/'.$r->menu_seo);?>" class="woocommerce-LoopProduct-link">
                                                 <img src="<?=base_url('img/menu_folder/thumbs/'.$r->menu_foto);?>" class="img-responsive" alt="">
                                             </a>
                                         </div>
                                         <div class="product-content-wrapper">
-                                            <a href="<?=site_url('menu/detail/'.$r->menu_seo);?>" class="woocommerce-LoopProduct-link">
+                                            <a href="<?=site_url('menuorder/'.$r->menu_seo);?>" class="woocommerce-LoopProduct-link">
                                             <h3><?=trim($r->menu_nama);?></h3>
                                                 <div itemprop="description">
                                                     <p style="max-height: none;"><?=trim($r->menu_deskripsi);?></p>
