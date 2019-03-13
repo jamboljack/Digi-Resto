@@ -16,6 +16,8 @@ $meta = $this->menu_m->select_meta()->row();
         <link rel="stylesheet" type="text/css" href="<?=base_url('frontend');?>/css/colors/red.css" media="all" />
         <link rel="stylesheet" type="text/css" href="<?=base_url('frontend');?>/css/jquery.mCustomScrollbar.min.css" media="all" />
       	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800%7CYanone+Kaffeesatz:200,300,400,700" rel="stylesheet">
+        <link href="<?=base_url();?>backend/js/sweetalert2.css" rel="stylesheet" type="text/css" />
+        <script src="<?=base_url();?>backend/js/sweetalert2.min.js"></script>
     </head>
     <?php 
     if ($this->uri->segment(1) == '') {
@@ -24,6 +26,8 @@ $meta = $this->menu_m->select_meta()->row();
         $class = 'full-width grid-view columns-4 archive woocommerce-page';
     } elseif ($this->uri->segment(1) == 'menuorder') {
         $class = 'single-product style-1 woocommerce';
+    } elseif ($this->uri->segment(1) == 'cart') {
+        $class = 'woocommerce-cart';
     }
     ?>
    <body class="<?=$class;?>">
@@ -39,5 +43,64 @@ $meta = $this->menu_m->select_meta()->row();
       	<script type="text/javascript" src="<?=base_url('frontend');?>/js/social.share.min.js"></script>
       	<script type="text/javascript" src="<?=base_url('frontend');?>/js/jquery.mCustomScrollbar.concat.min.js"></script>
       	<script type="text/javascript" src="<?=base_url('frontend');?>/js/scripts.min.js"></script>
+
+        <script type="text/javascript">
+        function qty_change(){
+            var qty = 1;
+            $('.product_quantity_up').each(function(index, el) {
+                $(this).on('click', function(event) {
+                    qty = parseInt($(this).parent().find('.product_quantity_value').val())+1;
+                    if (qty > 0) {
+                        $(this).parent().parent().parent().find('.addToCart').attr('data-qty', qty);
+                    }else{
+                        $(this).parent().parent().parent().find('.addToCart').attr('data-qty', 1);
+                    }
+                });
+            });
+
+            $('.product_quantity_down').each(function(index, el) {
+                $(this).on('click', function(event) {
+                    qty = parseInt($(this).parent().find('.product_quantity_value').val())-1;
+                    if (qty > 0) {
+                        $(this).parent().parent().parent().find('.addToCart').attr('data-qty', qty);
+                    }else{
+                        $(this).parent().parent().parent().find('.addToCart').attr('data-qty', 1);
+                    }
+                });
+            });
+        }
+
+        qty_change();
+        
+        $('.addToCart').each(function(index, el) {
+            var data = {};
+            $(this).on('click', function(event) {
+                event.preventDefault();
+                data['id']  = $(this).data('id');
+                data['qty'] = $(this).attr('data-qty');
+                $.ajax({
+                    url: '<?=site_url('cart/additem');?>', 
+                    type: 'POST',
+                    data: {data: data}, 
+                })
+                .done(function(res) {
+                    swal({
+                        title:"Sukses",
+                        text: "Order Menu Berhasil",
+                        timer: 2000,
+                        showConfirmButton: false,
+                        type: "success"
+                    });
+
+                    $('.cart_count').html(res.cart_count);
+                    $('.cart_total_format').html(res.cart_total_format);
+                    $('.cart_dropdown_container').html(res.cart_dropdown_container);
+                })
+                .fail(function(error) {
+                    console.log(error.responseText);
+                });
+            });
+        });
+    </script>
    	</body>
 </html>

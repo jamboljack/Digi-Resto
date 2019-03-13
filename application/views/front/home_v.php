@@ -38,10 +38,7 @@
                                         </div>
                                         <div class="product-content-wrapper">
                                             <a href="<?=site_url('menuorder/'.$r->menu_seo);?>" class="woocommerce-LoopProduct-link">
-                                            <h3><?=trim($r->menu_nama);?></h3>
-                                                <div itemprop="description">
-                                                    <p style="max-height: none;"><?=trim($r->menu_deskripsi);?></p>
-                                                </div>
+                                                <h3><?=ucwords(strtolower($r->menu_nama));?></h3>
                                                 <div  class="yith_wapo_groups_container">
                                                     <div  class="ywapo_group_container ywapo_group_container_radio form-row form-row-wide " data-requested="1" data-type="radio" data-id="1" data-condition="">
                                                         <h3><span>Harga</span></h3>
@@ -52,7 +49,7 @@
                                                 </div>
                                             </a>
                                             <div class="hover-area">
-                                                <a rel="nofollow" href="" data-quantity="1" data-product_id="51" data-product_sku="" class="button product_type_simple add_to_cart_button">Order</a>
+                                                <a data-id="<?=$r->menu_id;?>" data-qty="1" title="Tambah ke Keranjang" type="button" class="addToCart button product_type_simple add_to_cart_button">Order</a>
                                             </div>
                                         </div>
                                     </div>
