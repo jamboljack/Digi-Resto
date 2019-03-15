@@ -36,13 +36,8 @@ $listKategori = $this->menu_m->select_kategori()->result();
                             <i class="fa fa-cart-plus"></i>
                             <span>Cart Order Anda</span>
                         </a>
-                        <ul class="sub-menu">
-                            <!-- <?=$cart_dropdown_container;?> -->
-                            <li>
-                                <a href="" title="Tampilkan Cart Order Anda">
-                                <span class="count">2 Item</span> <span class="amount">100,000</span>
-                                </a>
-                            </li>
+                        <ul class="sub-menu cart_dropdown_container">
+                            <?=$cart_dropdown_container;?>
                         </ul>
                     </li>
                 </ul>

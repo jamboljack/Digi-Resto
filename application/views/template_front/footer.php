@@ -52,8 +52,8 @@ $listSocial = $this->menu_m->select_social()->result();
                     </div>
                 </li>
                 <li class="cart">
-                    <a class="footer-cart-contents" href="cart.html" title="View your shopping cart">
-                        <span class="count">2</span>
+                    <a class="footer-cart-contents" href="<?=site_url('cart');?>" title="Tampilkan Cart Order Anda">
+                        <?=$cart_count_footer;?>
                     </a>
                 </li>
             </ul>

@@ -18,6 +18,7 @@ $meta = $this->menu_m->select_meta()->row();
       	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800%7CYanone+Kaffeesatz:200,300,400,700" rel="stylesheet">
         <link href="<?=base_url();?>backend/js/sweetalert2.css" rel="stylesheet" type="text/css" />
         <script src="<?=base_url();?>backend/js/sweetalert2.min.js"></script>
+        <script type="text/javascript" src="<?=base_url('frontend');?>/js/jquery.min.js"></script>
     </head>
     <?php 
     if ($this->uri->segment(1) == '') {
@@ -36,7 +37,6 @@ $meta = $this->menu_m->select_meta()->row();
 		<?=$content;?>
         <?=$_footer;?>
       	</div>
-      	<script type="text/javascript" src="<?=base_url('frontend');?>/js/jquery.min.js"></script>
       	<script type="text/javascript" src="<?=base_url('frontend');?>/js/tether.min.js"></script>
       	<script type="text/javascript" src="<?=base_url('frontend');?>/js/bootstrap.min.js"></script>
       	<script type="text/javascript" src="<?=base_url('frontend');?>/js/owl.carousel.min.js"></script>
@@ -91,10 +91,10 @@ $meta = $this->menu_m->select_meta()->row();
                         showConfirmButton: false,
                         type: "success"
                     });
-
                     $('.cart_count').html(res.cart_count);
                     $('.cart_total_format').html(res.cart_total_format);
                     $('.cart_dropdown_container').html(res.cart_dropdown_container);
+                    console.log(res);
                 })
                 .fail(function(error) {
                     console.log(error.responseText);
