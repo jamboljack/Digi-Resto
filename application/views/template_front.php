@@ -94,7 +94,7 @@ $meta = $this->menu_m->select_meta()->row();
                     $('.cart_count').html(res.cart_count);
                     $('.cart_total_format').html(res.cart_total_format);
                     $('.cart_dropdown_container').html(res.cart_dropdown_container);
-                    console.log(res);
+                    $('.cart_count_footer').html(res.cart_count_footer);
                 })
                 .fail(function(error) {
                     console.log(error.responseText);
