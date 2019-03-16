@@ -7,5 +7,6 @@ $route['menuorder/(:any)']        = 'front/menuorder/detail/$1';
 $route['cart']                    = 'front/cart';
 $route['cart/additem']            = 'front/cart/additem';
 $route['cart/remove_item/(:any)'] = 'front/cart/remove_item/$1';
+$route['cart/update_item']        = 'front/cart/update_item';
 $route['404_override']            = 'my_error';
 $route['translate_uri_dashes']    = false;
