@@ -101,12 +101,7 @@ $('.cart_remove_item').each(function(index, el) {
                     url: "{base}/cart/remove_item/"+rowid, 
                 })
                 .done(function(res) {
-                    $('.cart_total').html(res.cart_total);
-                    $('.cart_count').html(res.cart_count);
-                    $('.cart_total_format').html(res.cart_total_format);
-                    $('.cart_dropdown_container').html(res.cart_dropdown_container);
-                    $('.keranjang_belanja').html(res.keranjang_belanja);
-                    $('#berat_total').html(res.berat_total);
+                    location.reload();
                 })
                 .fail(function(error) {
                     console.log(error.responseText);

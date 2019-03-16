@@ -60,6 +60,16 @@ class Cart extends MY_Controller
         }
     }
 
+    public function remove_item($rowid = null)
+    {
+        if (isset($rowid) && !empty($rowid) && $this->input->is_ajax_request()) {  
+            $this->cart->remove($rowid);
+        }else{
+            echo 'Sorry, direct access is not allowed!';
+        }
+
+    }
+
     public function _display()
     {
         $cart_content = $this->cart->contents();
