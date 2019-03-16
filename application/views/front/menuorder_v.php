@@ -24,7 +24,7 @@
                             <div itemprop="description">
                                 <p><?=ucwords(strtolower($detail->menu_deskripsi));?></p>
                             </div>
-                            <form class="cart"  enctype='multipart/form-data'>
+                            <form class="cart" name="cart">
                                 <div  class="yith_wapo_groups_container">
                                     <div class="yith_wapo_groups_container_wrap">
                                         <div id="ywapo_value_2" class="ywapo_group_container ywapo_group_container_checkbox form-row form-row-wide " data-requested="0" data-type="checkbox" data-id="2" data-condition="">
@@ -44,7 +44,7 @@
                                 <div class="qty-btn">
                                     <label>Qty</label>
                                     <div class="quantity">
-                                        <input type="text" name="quantity" value="1" title="Qty" id="pq_val" class="input-text qty text product_quantity_value"/>
+                                        <input type="text" name="qty" value="1" id="qty" onkeydown="qty_change()" title="Qty" class="input-text qty text product_quantity_value" autocomplete="off" />
                                     </div>
                                 </div>
                                 <button data-id="<?=$detail->menu_id;?>" data-qty="1" type="submit" class="single_add_to_cart_button button alt addToCart">Order</button>
@@ -56,3 +56,11 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+function qty_change() {
+    var myForm = document.cart;
+    var Qty    = myForm.qty.value;
+    $('.addToCart').attr('data-qty', Qty);
+}
+</script>

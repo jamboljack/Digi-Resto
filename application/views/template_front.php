@@ -45,32 +45,36 @@ $meta = $this->menu_m->select_meta()->row();
       	<script type="text/javascript" src="<?=base_url('frontend');?>/js/scripts.min.js"></script>
 
         <script type="text/javascript">
-        function qty_change(){
-            var qty = 1;
-            $('.product_quantity_up').each(function(index, el) {
-                $(this).on('click', function(event) {
-                    qty = parseInt($(this).parent().find('.product_quantity_value').val())+1;
-                    if (qty > 0) {
-                        $(this).parent().parent().parent().find('.addToCart').attr('data-qty', qty);
-                    }else{
-                        $(this).parent().parent().parent().find('.addToCart').attr('data-qty', 1);
-                    }
-                });
-            });
+        // function qty_change() {
+        //     var qty = 1;
+        //     qty = parseInt($(this).parent().find('.product_quantity_value').val());
+        //     $(this).parent().parent().parent().find('.addToCart').attr('data-qty', qty);
+        //     console.log(qty);
+            // var qty = 1;
+            // $('.product_quantity_up').each(function(index, el) {
+            //     $(this).on('click', function(event) {
+            //         qty = parseInt($(this).parent().find('.product_quantity_value').val())+1;
+            //         if (qty > 0) {
+            //             $(this).parent().parent().parent().find('.addToCart').attr('data-qty', qty);
+            //         }else{
+            //             $(this).parent().parent().parent().find('.addToCart').attr('data-qty', 1);
+            //         }
+            //     });
+            // });
 
-            $('.product_quantity_down').each(function(index, el) {
-                $(this).on('click', function(event) {
-                    qty = parseInt($(this).parent().find('.product_quantity_value').val())-1;
-                    if (qty > 0) {
-                        $(this).parent().parent().parent().find('.addToCart').attr('data-qty', qty);
-                    }else{
-                        $(this).parent().parent().parent().find('.addToCart').attr('data-qty', 1);
-                    }
-                });
-            });
-        }
+            // $('.product_quantity_down').each(function(index, el) {
+            //     $(this).on('click', function(event) {
+            //         qty = parseInt($(this).parent().find('.product_quantity_value').val())-1;
+            //         if (qty > 0) {
+            //             $(this).parent().parent().parent().find('.addToCart').attr('data-qty', qty);
+            //         }else{
+            //             $(this).parent().parent().parent().find('.addToCart').attr('data-qty', 1);
+            //         }
+            //     });
+            // });
+        // }
 
-        qty_change();
+        // qty_change();
         
         $('.addToCart').each(function(index, el) {
             var data = {};
