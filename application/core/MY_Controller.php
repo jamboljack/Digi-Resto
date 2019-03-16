@@ -7,6 +7,9 @@ class MY_Controller extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        
+        define('base', rtrim(base_url(), '/'));
+        $this->data['base'] = base;
     }
 
     public function cek_auth_admin()
