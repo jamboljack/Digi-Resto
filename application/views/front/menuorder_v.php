@@ -44,7 +44,7 @@
                                 <div class="qty-btn">
                                     <label>Qty</label>
                                     <div class="quantity">
-                                        <input type="text" name="qty" value="1" id="qty" onkeydown="qty_change()" title="Qty" class="input-text qty text product_quantity_value" autocomplete="off" />
+                                        <input type="text" name="qty" value="1" id="qty" onkeyup="qty_change()" title="Qty" class="input-text qty text product_quantity_value" autocomplete="off" />
                                     </div>
                                 </div>
                                 <button data-id="<?=$detail->menu_id;?>" data-qty="1" type="submit" class="single_add_to_cart_button button alt addToCart">Order</button>
