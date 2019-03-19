@@ -25,7 +25,7 @@ class Cart extends MY_Controller
                 $total_waktu += $waktu;
             }
 
-            $data['total_waktu;']                  = $total_waktu;
+            $data['total_waktu']                   = $total_waktu;
             $this->data['total_waktu']             = $total_waktu;
             $this->data['cart_count']              = count($cart_content);
             $this->data['cart_total']              = $this->cart->total();
@@ -70,13 +70,13 @@ class Cart extends MY_Controller
     }
 
     public function update_item()
-    { 
+    {
         $res = array();
         if ($this->input->post('rowid') && $this->input->post('qty')) {
             $param['rowid'] = $this->input->post('rowid');
             $param['qty']   = $this->input->post('qty');
             $this->cart->update($param);
-            $cart_content             = $this->cart->contents(); 
+            $cart_content = $this->cart->contents();
             foreach ($cart_content as $key => $value) {
                 $cart_content[$key]['price_sub_format'] = number_format($cart_content[$key]['subtotal'], 0, '', ',');
             }

@@ -29,6 +29,8 @@ $meta = $this->menu_m->select_meta()->row();
         $class = 'single-product style-1 woocommerce';
     } elseif ($this->uri->segment(1) == 'cart') {
         $class = 'woocommerce-cart';
+    } elseif ($this->uri->segment(1) == 'checkout') {
+        $class = 'woocommerce-checkout';
     }
     ?>
    <body class="<?=$class;?>">

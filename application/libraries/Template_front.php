@@ -30,7 +30,7 @@ class Template_front
             $data['cart_total']                    = $this->_ci->cart->total();
             $data['cart_total_format']             = number_format($data['cart_total'], 0, '', ',');
             $data['base']                          = rtrim(base_url(), '/');
-            $data['total_waktu;']                  = $total_waktu;
+            $data['total_waktu']                   = $total_waktu;
             $this->data['total_waktu']             = $total_waktu;
             $this->data['cart_count']              = count($cart_content);
             $this->data['cart_total']              = $this->_ci->cart->total();
