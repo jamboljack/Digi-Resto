@@ -26,11 +26,13 @@ $meta = $this->menu_m->select_meta()->row();
     } elseif ($this->uri->segment(1)=='kategori') {
         $class = 'full-width grid-view columns-4 archive woocommerce-page';
     } elseif ($this->uri->segment(1) == 'menuorder') {
-        $class = 'single-product style-1 woocommerce';
+        $class = 'single-product style-2';
     } elseif ($this->uri->segment(1) == 'cart') {
         $class = 'woocommerce-cart';
-    } elseif ($this->uri->segment(1) == 'checkout') {
+    } elseif ($this->uri->segment(1) == 'checkout' && $this->uri->segment(2) == '') {
         $class = 'woocommerce-checkout';
+    } elseif ($this->uri->segment(1) == 'checkout' && $this->uri->segment(2) == 'selesai') {
+        $class = 'woocommerce-page woocommerce-order-received woocommerce-checkout';
     }
     ?>
    <body class="<?=$class;?>">

@@ -10,6 +10,6 @@ $route['cart/remove_item/(:any)'] = 'front/cart/remove_item/$1';
 $route['cart/update_item']        = 'front/cart/update_item';
 $route['checkout']                = 'front/checkout';
 $route['checkout/(:any)']         = 'front/checkout/$1';
-$route['checkout/detail/(:any)']  = 'front/checkout/detail/$1';
+$route['checkout/selesai/(:any)'] = 'front/checkout/selesai/$1';
 $route['404_override']            = 'my_error';
 $route['translate_uri_dashes']    = false;

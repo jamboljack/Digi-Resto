@@ -17,16 +17,22 @@ class Cart extends MY_Controller
         $cart_content = $this->cart->contents();
         if ($cart_content) {
             $total_waktu = 0;
+            $total_qty   = 0;
             foreach ($cart_content as $key => $value) {
                 $waktu                                  = $value['waktu'];
+                $qty                                    = $value['qty'];
                 $cart_content[$key]['waktu']            = $waktu;
+                $cart_content[$key]['qty']              = $qty;
                 $cart_content[$key]['price_format']     = number_format($value['price'], 0, '', ',');
                 $cart_content[$key]['price_sub_format'] = number_format($value['price'] * $value['qty'], 0, '', ',');
                 $total_waktu += $waktu;
+                $total_qty += $qty;
             }
 
             $data['total_waktu']                   = $total_waktu;
+            $data['total_qty']                     = $total_qty;
             $this->data['total_waktu']             = $total_waktu;
+            $this->data['total_qty']               = $total_qty;
             $this->data['cart_count']              = count($cart_content);
             $this->data['cart_total']              = $this->cart->total();
             $this->data['cart_total_format']       = number_format($this->cart->total(), 0, '', '.');

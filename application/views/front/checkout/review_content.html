@@ -24,7 +24,7 @@
                     <h3>Informasi Tambahan</h3>
                     <p class="form-row form-row notes" id="order_comments_field">
                         <label for="order_comments" class="">Catatan</label>
-                        <textarea name="resto_order[catatan]" class="input-text " id="catatan" placeholder="Tuliskan Catatan untuk Order Anda" rows="2" cols="5"></textarea>
+                        <textarea name="resto_order[catatan]" class="input-text " id="catatan" placeholder="Tuliskan Catatan untuk Order Anda" rows="4" cols="5"></textarea>
                     </p>
                 </div>
             </div>
@@ -63,14 +63,14 @@
                         </td>
                     </tr>
                     <tr class="cart-subtotal">
-                        <th>Waktu</th>
+                        <th>Total Waktu</th>
                         <td>
                             <span class="woocommerce-Price-amount amount">
                             <span class="woocommerce-Price-currencySymbol"></span>{total_waktu} Menit</span>
                         </td>
                     </tr>
                     <tr class="order-total">
-                        <th>Total</th>
+                        <th>Total Bayar</th>
                         <td>
                             <strong><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">Rp. </span>{cart_total_format}</span></strong>
                         </td>
@@ -133,7 +133,7 @@ $(document).ready(function() {
             // },
         })
         .done(function(res) {
-            location.href = '{base}/checkout/detail/'+res.order_id;
+            location.href = '{base}/checkout/selesai/'+res.order_id;
         })
         .fail(function(error) {
             console.log(error.responseText);
