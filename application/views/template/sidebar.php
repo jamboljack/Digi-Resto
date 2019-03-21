@@ -12,6 +12,7 @@ if ($uri == 'home') {
     $kategori      = '';
     $meja          = '';
     $menu_makanan  = '';
+    $monitoring    = '';
     $order         = '';
     $social        = '';
     $users         = '';
@@ -26,6 +27,7 @@ if ($uri == 'home') {
     $kategori      = '';
     $meja          = '';
     $menu_makanan  = '';
+    $monitoring    = '';
     $order         = '';
     $social        = '';
     $users         = '';
@@ -40,6 +42,7 @@ if ($uri == 'home') {
     $kategori      = '';
     $meja          = '';
     $menu_makanan  = '';
+    $monitoring    = '';
     $order         = '';
     $social        = '';
     $users         = '';
@@ -54,6 +57,7 @@ if ($uri == 'home') {
     $kategori      = '';
     $meja          = '';
     $menu_makanan  = '';
+    $monitoring    = '';
     $order         = '';
     $social        = '';
     $users         = '';
@@ -68,6 +72,7 @@ if ($uri == 'home') {
     $kategori      = 'active';
     $meja          = '';
     $menu_makanan  = '';
+    $monitoring    = '';
     $order         = '';
     $social        = '';
     $users         = '';
@@ -82,6 +87,7 @@ if ($uri == 'home') {
     $kategori      = '';
     $meja          = 'active';
     $menu_makanan  = '';
+    $monitoring    = '';
     $order         = '';
     $social        = '';
     $users         = '';
@@ -96,6 +102,22 @@ if ($uri == 'home') {
     $kategori      = '';
     $meja          = '';
     $menu_makanan  = 'active';
+    $monitoring    = '';
+    $order         = '';
+    $social        = '';
+    $users         = '';
+} elseif ($uri == 'monitoring') {
+    $dashboard     = '';
+    $meta          = '';
+    $kontak        = '';
+    $master        = '';
+    $span_master_1 = '';
+    $span_master_2 = '';
+    $slider        = '';
+    $kategori      = '';
+    $meja          = '';
+    $menu_makanan  = '';
+    $monitoring    = 'active';
     $order         = '';
     $social        = '';
     $users         = '';
@@ -110,6 +132,7 @@ if ($uri == 'home') {
     $kategori      = '';
     $meja          = '';
     $menu_makanan  = '';
+    $monitoring    = '';
     $order         = 'active';
     $social        = '';
     $users         = '';
@@ -124,6 +147,7 @@ if ($uri == 'home') {
     $kategori      = '';
     $meja          = '';
     $menu_makanan  = '';
+    $monitoring    = '';
     $order         = '';
     $social        = 'active';
     $users         = '';
@@ -138,6 +162,7 @@ if ($uri == 'home') {
     $kategori      = '';
     $meja          = '';
     $menu_makanan  = '';
+    $monitoring    = '';
     $order         = '';
     $social        = '';
     $users         = 'active';
@@ -152,6 +177,7 @@ if ($uri == 'home') {
     $kategori      = '';
     $meja          = '';
     $menu_makanan  = '';
+    $monitoring    = '';
     $order         = '';
     $social        = '';
     $users         = '';
@@ -203,6 +229,11 @@ if ($uri == 'home') {
             </li>
             <li class="heading">
                 <h3 class="uppercase">MENU TRANSAKSI</h3>
+            </li>
+            <li class="tooltips <?=$monitoring;?>" data-container="body" data-placement="right" data-html="true" data-original-title="Monitoring">
+                <a href="<?=site_url('admin/monitoring');?>">
+                    <i class="fa fa-laptop"></i><span class="title"> Monitoring</span>
+                </a>
             </li>
             <li class="tooltips <?=$order;?>" data-container="body" data-placement="right" data-html="true" data-original-title="Order Menu">
                 <a href="<?=site_url('admin/order');?>">
