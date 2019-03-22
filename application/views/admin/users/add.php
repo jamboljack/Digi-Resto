@@ -100,7 +100,7 @@
                                                     <select class="form-control" name="lstLevel">
                                                         <option value="">- Pilih -</option>
                                                         <option value="Admin">Admin</option>
-                                                        <option value="Pelayan">Pelayan</option>
+                                                        <option value="Bar">Bar</option>
                                                         <option value="Kasir">Kasir</option>
                                                         <option value="Dapur">Dapur</option>
                                                     </select>

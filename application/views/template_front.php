@@ -29,7 +29,7 @@ $meta = $this->menu_m->select_meta()->row();
         $class = 'single-product style-2';
     } elseif ($this->uri->segment(1) == 'cart') {
         $class = 'woocommerce-cart';
-    } elseif ($this->uri->segment(1) == 'checkout' && $this->uri->segment(2) == '') {
+    } elseif ($this->uri->segment(1) == 'checkout' && $this->uri->segment(2) == 'review') {
         $class = 'woocommerce-checkout';
     } elseif ($this->uri->segment(1) == 'checkout' && $this->uri->segment(2) == 'selesai') {
         $class = 'woocommerce-page woocommerce-order-received woocommerce-checkout';

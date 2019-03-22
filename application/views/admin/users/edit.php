@@ -96,7 +96,7 @@
                                                     <select class="form-control" name="lstLevel">
                                                         <option value="">- Pilih -</option>
                                                         <option value="Admin" <?php if ($detail->user_level == 'Admin') {echo "selected";}?>>Admin</option>
-                                                        <option value="Pelayan" <?php if ($detail->user_level == 'Pelayan') {echo "selected";}?>>Pelayan</option>
+                                                        <option value="Bar" <?php if ($detail->user_level == 'Bar') {echo "selected";}?>>Bar</option>
                                                         <option value="Kasir" <?php if ($detail->user_level == 'Kasir') {echo "selected";}?>>Kasir</option>
                                                         <option value="Dapur" <?php if ($detail->user_level == 'Dapur') {echo "selected";}?>>Dapur</option>
                                                     </select>

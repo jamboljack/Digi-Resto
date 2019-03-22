@@ -9,6 +9,11 @@ class Users_m extends CI_Model
     public $column_search = array('user_username', 'user_name', 'user_email', 'user_level', 'user_status');
     public $order         = array('user_name' => 'asc');
 
+    public $table1         = 'v_akses';
+    public $column_order1  = array(null, null, 'kategori_nama');
+    public $column_search1 = array();
+    public $order1         = array('kategori_nama' => 'asc');
+
     public function __construct()
     {
         parent::__construct();
@@ -124,6 +129,80 @@ class Users_m extends CI_Model
 
         $this->db->where('user_username', $user_username);
         $this->db->update('resto_users', $data);
+    }
+
+    // Akses
+    private function _get_akses_datatables_query($username)
+    {
+        $this->db->from($this->table1);
+        $this->db->where('user_username', $username);
+
+        $i = 0;
+        foreach ($this->column_search1 as $item) {
+            if ($_POST['search']['value']) {
+                if ($i === 0) {
+                    $this->db->group_start();
+                    $this->db->like($item, $_POST['search']['value']);
+                } else {
+                    $this->db->or_like($item, $_POST['search']['value']);
+                }
+
+                if (count($this->column_search1) - 1 == $i) {
+                    $this->db->group_end();
+                }
+            }
+            $i++;
+        }
+
+        if (isset($_POST['order'])) {
+            $this->db->order_by($this->column_order1[$_POST['order']['0']['column']], $_POST['order']['0']['dir']);
+        } else if (isset($this->order1)) {
+            $order = $this->order1;
+            $this->db->order_by(key($order), $order[key($order)]);
+        }
+    }
+
+    public function get_akses_datatables($username)
+    {
+        $this->_get_akses_datatables_query($username);
+        if ($_POST['length'] != -1) {
+            $this->db->limit($_POST['length'], $_POST['start']);
+        }
+
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function count_akses_filtered($username)
+    {
+        $this->_get_akses_datatables_query($username);
+        $query = $this->db->get();
+        return $query->num_rows();
+    }
+
+    public function count_akses_all($username)
+    {
+        $this->db->from($this->table1);
+        $this->db->where('user_username', $username);
+
+        return $this->db->count_all_results();
+    }
+
+    public function insert_data_akses()
+    {
+        $data = array(
+            'user_username' => trim($this->input->post('user_username', 'true')),
+            'kategori_id'   => trim($this->input->post('lstKategori', 'true')),
+            'akses_update'  => date('Y-m-d H:i:s'),
+        );
+
+        $this->db->insert('resto_akses', $data);
+    }
+
+    public function delete_data_akses($id)
+    {
+        $this->db->where('akses_id', $id);
+        $this->db->delete('resto_akses');
     }
 }
 /* Location: ./application/model/admin/Users_m.php */

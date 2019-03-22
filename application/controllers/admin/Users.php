@@ -24,9 +24,16 @@ class Users extends MY_Controller
 
         foreach ($List as $r) {
             $no++;
-            $row   = array();
-            $link  = site_url('admin/users/editdata/' . $r->user_username);
-            $row[] = '<a href="' . $link . '" title="Edit Data"><i class="icon-pencil"></i></a>';
+            $row       = array();
+            $username  = $r->user_username;
+            $link      = site_url('admin/users/editdata/' . $username);
+            $linkakses = site_url('admin/users/hakakses/' . $username);
+            if ($r->user_level == 'Bar' || $r->user_level == 'Dapur') {
+                $akses = '<a href="' . $linkakses . '" title="Akses Kategori"><i class="icon-list"></i></a>';
+            } else {
+                $akses = '';
+            }
+            $row[] = '<a href="' . $link . '" title="Edit Data"><i class="icon-pencil"></i></a> ' . $akses;
             $row[] = $no;
             $row[] = $r->user_username;
             $row[] = $r->user_name;
@@ -69,7 +76,7 @@ class Users extends MY_Controller
             $row[]    = '<a onclick="hapusData(' . $akses_id . ')" title="Delete Data">
                         <i class="icon-close"></i></a>';
             $row[]  = $no;
-            $row[]  = trim($r->pasar_nama);
+            $row[]  = trim($r->kategori_nama);
             $data[] = $row;
         }
 
@@ -147,8 +154,8 @@ class Users extends MY_Controller
 
     public function hakakses($user_username)
     {
-        $data['detail']    = $this->users_m->select_by_id($user_username)->row();
-        $data['listPasar'] = $this->db->get('resto_pasar')->result();
+        $data['detail']       = $this->users_m->select_by_id($user_username)->row();
+        $data['listKategori'] = $this->db->get('resto_kategori')->result();
         $this->template->display('admin/users/akses_v', $data);
     }
 
