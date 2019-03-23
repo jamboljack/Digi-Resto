@@ -28,7 +28,7 @@ class Users extends MY_Controller
             $username  = $r->user_username;
             $link      = site_url('admin/users/editdata/' . $username);
             $linkakses = site_url('admin/users/hakakses/' . $username);
-            if ($r->user_level == 'Bar' || $r->user_level == 'Dapur') {
+            if ($r->user_level != 'Admin') {
                 $akses = '<a href="' . $linkakses . '" title="Akses Kategori"><i class="icon-list"></i></a>';
             } else {
                 $akses = '';

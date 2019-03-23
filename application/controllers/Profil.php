@@ -6,7 +6,7 @@ class Profil extends MY_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->cek_auth_admin();
+        $this->cek_auth_login();
         $this->load->library('template');
         $this->load->model('profil_m');
     }

@@ -13,11 +13,10 @@ class Home extends MY_Controller
 
     public function index()
     {
-        // $data['TotalPasar']    = $this->db->get('sipp_pasar')->result();
-        // $data['TotalPedagang'] = $this->db->get_where('sipp_dasar', array('dasar_data' => 1))->result();
-        // $data['piutang']       = $this->db->select_sum('skrd_total', 'total')->get_where('sipp_skrd', array('YEAR(skrd_tgl)' => date('Y'), 'skrd_status' => 1))->row();
-        // $data['bayar']         = $this->db->select_sum('skrd_total', 'total')->get_where('sipp_skrd', array('YEAR(skrd_tgl_bayar)' => date('Y'), 'skrd_status' => 2))->row();
-        $this->template->display('admin/home_v');
+        $data['TotalMenu']   = $this->db->get('resto_menu')->result();
+        $data['TotalMonth'] = $this->db->select_sum('order_total', 'total')->get_where('resto_order', array('order_status' => 2, 'MONTH(order_tanggal)' => date('m'), 'YEAR(order_tanggal)' => date('Y')))->row();
+        $data['TotalIncome']  = $this->db->select_sum('order_total', 'total')->get_where('resto_order', array('order_status' => 2))->row();
+        $this->template->display('admin/home_v', $data);
     }
 }
 /* Location: ./application/controller/admin/Home.php */

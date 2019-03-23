@@ -35,16 +35,20 @@ class Login extends MY_Controller
                 $num_account  = count($temp_account);
                 if ($num_account > 0) {
                     $array_item = array(
-                        'username'          => trim($temp_account->user_username),
-                        'pass'              => $temp_account->user_password,
-                        'nama'              => strtoupper(trim($temp_account->user_name)),
-                        'avatar'            => $temp_account->user_avatar,
-                        'level'             => $temp_account->user_level,
+                        'username'        => trim($temp_account->user_username),
+                        'pass'            => $temp_account->user_password,
+                        'nama'            => strtoupper(trim($temp_account->user_name)),
+                        'avatar'          => $temp_account->user_avatar,
+                        'level'           => $temp_account->user_level,
                         'logged_in_resto' => true,
                     );
 
                     $this->session->set_userdata($array_item);
-                    redirect(site_url('admin/home'));
+                    if ($this->session->userdata('level') == 'Admin') {
+                        redirect(site_url('admin/home'));
+                    } else {
+                        redirect(site_url('operator/home'));
+                    }
                 } else {
                     $this->session->set_flashdata('notification', '<b>Username atau Password Anda Salah.</b>');
                     redirect(site_url('login'));

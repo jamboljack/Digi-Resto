@@ -12,7 +12,7 @@ class MY_Controller extends CI_Controller
         $this->data['base'] = base;
     }
 
-    public function cek_auth_admin()
+    public function cek_auth_login()
     {
         if ($this->session->userdata('username') == '' || $this->session->userdata('username') == null) {
             $_SESSION['redirect'] = current_url();
@@ -20,11 +20,19 @@ class MY_Controller extends CI_Controller
         }
     }
 
-    public function cek_auth_user()
+    public function cek_auth_admin()
     {
-        if ($this->session->userdata('username_user') == '' || $this->session->userdata('username_user') == null) {
+        if ($this->session->userdata('username') == '' || $this->session->userdata('username') == null || $this->session->userdata('level') != 'Admin') {
             $_SESSION['redirect'] = current_url();
-            redirect('login-user');
+            redirect('login');
+        }
+    }
+
+    public function cek_auth_operator()
+    {
+        if ($this->session->userdata('username') == '' || $this->session->userdata('username') == null || $this->session->userdata('level') == 'Admin') {
+            $_SESSION['redirect'] = current_url();
+            redirect('login');
         }
     }
 }

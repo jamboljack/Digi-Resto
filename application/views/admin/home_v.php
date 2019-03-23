@@ -15,90 +15,62 @@
             </div>
         </div>
 
-        <!-- <div class="row">
-            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                 <div class="dashboard-stat blue-madison">
                     <div class="visual">
-                        <i class="fa fa-building"></i>
+                        <i class="fa fa-cutlery"></i>
                     </div>
                     <div class="details">
                         <div class="number">
-                        <?php 
-                            $Jml_Pasar = count($TotalPasar);
-                            echo number_format($Jml_Pasar);
-                        ?>
+                            <?=number_format(count($TotalMenu), 0,'',','); ?>
                         </div>
                         <div class="desc">
-                        Pasar
+                        Menu
                         </div>
                     </div>
-                    <a class="more" href="<?=site_url('admin/pasar'); ?>">
+                    <a class="more" href="<?=site_url('admin/menu_makanan'); ?>">
                         Detail <i class="m-icon-swapright m-icon-white"></i>
                     </a>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                <div class="dashboard-stat red-intense">
-                    <div class="visual">
-                        <i class="icon-users"></i>
-                    </div>
-                    <div class="details">
-                        <div class="number">
-                        <?php 
-                            $Jml_Data = count($TotalPedagang);
-                            echo number_format($Jml_Data);
-                        ?>
-                        </div>
-                        <div class="desc">
-                        Pedagang
-                        </div>
-                    </div>
-                    <a class="more" href="<?=site_url('admin/pendasaran'); ?>">
-                        Detail <i class="m-icon-swapright m-icon-white"></i>
-                    </a>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                 <div class="dashboard-stat green-haze">
                     <div class="visual">
-                        <i class="fa fa-bar-chart"></i>
+                        <i class="icon-badge"></i>
                     </div>
                     <div class="details">
                         <div class="number">
-                        <?php 
-                            echo number_format($piutang->total,0,'',',');
-                        ?>
+                            <?=number_format($TotalMonth->total, 0,'',','); ?>
                         </div>
                         <div class="desc">
-                        Piutang <?=date('Y'); ?>
+                        Income <?=getBulan(date('m')).' '.date('Y');?>
                         </div>
                     </div>
-                    <a class="more" href="<?=site_url('admin/retribusi'); ?>">
+                    <a class="more" href="<?=site_url('admin/penjualan'); ?>">
                         Detail <i class="m-icon-swapright m-icon-white"></i>
                     </a>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                <div class="dashboard-stat purple-plum">
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                <div class="dashboard-stat red-intense">
                     <div class="visual">
-                        <i class="fa fa-line-chart"></i>
+                        <i class="fa fa-money"></i>
                     </div>
                     <div class="details">
                         <div class="number">
-                        <?php 
-                            echo number_format($bayar->total, 0,'',',');
-                        ?>
+                            <?=number_format($TotalIncome->total, 0,'',','); ?>
                         </div>
                         <div class="desc">
-                        Pembayaran <?=date('Y'); ?>
+                        Total
                         </div>
                     </div>
-                    <a class="more" href="<?=site_url('admin/retribusi'); ?>">
+                    <a class="more" href="<?=site_url('admin/penjualan'); ?>">
                         Detail <i class="m-icon-swapright m-icon-white"></i>
                     </a>
                 </div>
             </div>
-        </div> -->
+        </div>
 
         <div class="clearfix"></div>
     </div>

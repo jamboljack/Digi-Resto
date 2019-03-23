@@ -11,7 +11,7 @@
             <ul class="page-breadcrumb">
                 <li>
                     <i class="fa fa-home"></i>
-                    <a href="<?=site_url('admin/home');?>">Dashboard</a>
+                    <a href="<?=site_url('operator/home');?>">Dashboard</a>
                     <i class="fa fa-angle-right"></i>
                 </li>
                 <li>
@@ -19,7 +19,7 @@
                     <i class="fa fa-angle-right"></i>
                 </li>
                 <li>
-                    <a href="<?=site_url('admin/order');?>">Order</a>
+                    <a href="<?=site_url('operator/order');?>">Order</a>
                     <i class="fa fa-angle-right"></i>
                 </li>
                 <li>
@@ -126,7 +126,7 @@
                                 <?php } else { ?>
                                 <a onclick="printNota(<?=$detail->order_id;?>)" type="button" class="btn btn-primary"><i class="fa fa-print"></i> Print Nota</a>
                                 <?php } ?>
-                                <a href="<?=site_url('admin/order');?>" type="button" class="btn btn-warning"><i class="fa fa-times"></i> Batal</a>
+                                <a href="<?=site_url('operator/order');?>" type="button" class="btn btn-warning"><i class="fa fa-times"></i> Batal</a>
                             </div>
 
                         </form>
@@ -251,7 +251,7 @@ $(document).ready(function() {
         "serverSide": true,
         "order": [],
         "ajax": {
-            "url": "<?=site_url('admin/order/data_menu_list')?>",
+            "url": "<?=site_url('operator/order/data_menu_list')?>",
             "type": "POST"
         },
         "columnDefs": [
@@ -339,7 +339,7 @@ $(document).ready(function() {
         "serverSide": true,
         "order": [],
         "ajax": {
-            "url": "<?=site_url('admin/order/data_order_list/')?>"+order_id,
+            "url": "<?=site_url('operator/order/data_order_list/')?>"+order_id,
             "type": "POST"
         },
         "columnDefs": [
@@ -412,7 +412,7 @@ $(document).ready(function() {
             dataString = $('#formInput').serialize();
             if (statusinput =='Tambah') {
                 $.ajax({
-                    url: "<?=site_url('admin/order/saveitem');?>",
+                    url: "<?=site_url('operator/order/saveitem');?>",
                     type: "POST",
                     data: dataString,
                     dataType: 'JSON',
@@ -437,7 +437,7 @@ $(document).ready(function() {
                 });
             } else {
                 $.ajax({
-                    url: "<?=site_url('admin/order/updateitem');?>",
+                    url: "<?=site_url('operator/order/updateitem');?>",
                     type: "POST",
                     data: dataString,
                     dataType: 'JSON',
@@ -458,7 +458,7 @@ $(document).ready(function() {
 function getTotal() {
     var order_id = '<?=$detail->order_id;?>';
     $.ajax({
-        url : "<?=site_url('admin/order/get_data_total/');?>"+order_id,
+        url : "<?=site_url('operator/order/get_data_total/');?>"+order_id,
         type: "GET",
         dataType: "JSON",
         success: function(data) {
@@ -498,7 +498,7 @@ function getTotal() {
 function editData(id) {
     statusinput = 'Edit';
     $.ajax({
-        url : "<?=site_url('admin/order/get_data_detail/');?>"+id,
+        url : "<?=site_url('operator/order/get_data_detail/');?>"+id,
         type: "GET",
         dataType: "JSON",
         success: function(data) {
@@ -537,7 +537,7 @@ function hapusData(order_detail_id) {
     }, function(isConfirm) {
         if (!isConfirm) return;
         $.ajax({
-            url : "<?=site_url('admin/order/deletedataitem')?>/"+id,
+            url : "<?=site_url('operator/order/deletedataitem')?>/"+id,
             type: "POST",
             success: function(data) {
                 swal({
@@ -560,7 +560,7 @@ function hapusData(order_detail_id) {
 function bayarOrder(id) {
     $('#formBayar')[0].reset();
     $.ajax({
-        url : "<?=site_url('admin/order/get_data/');?>"+id,
+        url : "<?=site_url('operator/order/get_data/');?>"+id,
         type: "GET",
         dataType: "JSON",
         success: function(data) {
@@ -571,7 +571,7 @@ function bayarOrder(id) {
             $('#meja').val(data.meja_nama);
             var order_id = data.order_id;
             $.ajax({
-                url : "<?=site_url('admin/order/get_data_total/');?>"+order_id,
+                url : "<?=site_url('operator/order/get_data_total/');?>"+order_id,
                 type: "GET",
                 dataType: "JSON",
                 success: function(datax) {
@@ -696,7 +696,7 @@ $(document).ready(function() {
         submitHandler: function(form) {
             dataString = $("#formBayar").serialize();
             $.ajax({
-                url: '<?=site_url('admin/order/bayar');?>',
+                url: '<?=site_url('operator/order/bayar');?>',
                 type: "POST",
                 data: dataString,
                 success: function(data) {
@@ -708,7 +708,7 @@ $(document).ready(function() {
                         type: "success"
                     });
                     $('#formModalBayar').modal('hide');
-                    window.location="<?=site_url('admin/order');?>";
+                    window.location="<?=site_url('operator/order');?>";
                 },
                 error: function() {
                     swal({
@@ -735,7 +735,7 @@ function resetformBayar() {
 }
 
 function printNota(order_id) {
-    var url = "<?=site_url('admin/order/cetaknotabayar/');?>"+order_id;
+    var url = "<?=site_url('operator/order/cetaknotabayar/');?>"+order_id;
     window.open(url, "_blank");
     // location.reload();
 }

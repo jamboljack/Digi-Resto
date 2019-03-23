@@ -6,14 +6,14 @@ class Order extends MY_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->cek_auth_admin();
+        $this->cek_auth_operator();
         $this->load->library('template');
-        $this->load->model('admin/order_m');
+        $this->load->model('operator/order_m');
     }
 
     public function index()
     {
-        $this->template->display('admin/order/view');
+        $this->template->display('operator/order/view');
     }
 
     public function data_list()
@@ -33,7 +33,7 @@ class Order extends MY_Controller
                 $hapus = '';
                 $print = '<a onclick="printNota(' . $order_id . ')" title="Print Nota"><i class="icon-printer"></i></a>';
             }
-            $link  = site_url('admin/order/editdata/' . $r->order_id);
+            $link  = site_url('operator/order/editdata/' . $r->order_id);
             $row[] = '<a href="' . $link . '" title="Edit Data"><i class="icon-pencil"></i></a> ' . $hapus . ' ' . $print;
             $row[] = $no;
             $row[] = $r->order_id;
@@ -76,13 +76,13 @@ class Order extends MY_Controller
 
         $this->db->insert('resto_order', $data);
         $order_id = $this->db->insert_id();
-        redirect(site_url('admin/order/editdata/' . $order_id . '/' . $NoOrder));
+        redirect(site_url('operator/order/editdata/' . $order_id . '/' . $NoOrder));
     }
 
     public function editdata($order_id)
     {
         $data['detail'] = $this->db->get_where('v_order', array('order_id' => $order_id))->row();
-        $this->template->display('admin/order/edit', $data);
+        $this->template->display('operator/order/edit', $data);
     }
 
     public function data_menu_list()
@@ -455,4 +455,4 @@ class Order extends MY_Controller
         return $returnValue;
     }
 }
-/* Location: ./application/controller/admin/Order.php */
+/* Location: ./application/controller/operator/Order.php */

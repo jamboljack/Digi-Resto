@@ -35,7 +35,13 @@ $meta = $this->menu_m->select_meta()->row();
 <?=$_header;?>
 <div class="clearfix"></div>
 <div class="page-container">
-	<?=$_sidebar;?>
+	<?php 
+	if ($this->session->userdata('level') == 'Admin') {
+		echo $_sidebar;
+	} else {
+		echo $_sidebar_operator;
+	}
+	?>
     <?=$content;?>
 </div>
 <?=$_footer;?>

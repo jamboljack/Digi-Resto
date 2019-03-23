@@ -1,13 +1,13 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
-$active_group  = 'restoran';
-$query_builder = true;
-$db['restoran'] = array(
+$active_group     = 'digi-resto';
+$query_builder    = true;
+$db['digi-resto'] = array(
     'dsn'          => '',
     'hostname'     => 'localhost',
-    'username'     => 'root',
-    'password'     => '',
-    'database'     => 'db_resto',
+    'username'     => 'humanik1_jm',
+    'password'     => 'Jambolj4ck',
+    'database'     => 'humanik1_digiresto',
     'dbdriver'     => 'mysqli',
     'dbprefix'     => '',
     'pconnect'     => false,

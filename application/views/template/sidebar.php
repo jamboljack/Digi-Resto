@@ -15,7 +15,12 @@ if ($uri == 'home') {
     $monitoring    = '';
     $order         = '';
     $social        = '';
+    $printer       = '';
     $users         = '';
+    $report        = '';
+    $span_report_1 = '';
+    $span_report_2 = '';
+    $lap_penjualan = '';
 } elseif ($uri == 'meta') {
     $dashboard     = '';
     $meta          = 'active';
@@ -30,7 +35,12 @@ if ($uri == 'home') {
     $monitoring    = '';
     $order         = '';
     $social        = '';
+    $printer       = '';
     $users         = '';
+    $report        = '';
+    $span_report_1 = '';
+    $span_report_2 = '';
+    $lap_penjualan = '';
 } elseif ($uri == 'kontak') {
     $dashboard     = '';
     $meta          = '';
@@ -45,7 +55,12 @@ if ($uri == 'home') {
     $monitoring    = '';
     $order         = '';
     $social        = '';
+    $printer       = '';
     $users         = '';
+    $report        = '';
+    $span_report_1 = '';
+    $span_report_2 = '';
+    $lap_penjualan = '';
 } elseif ($uri == 'slider') {
     $dashboard     = '';
     $meta          = '';
@@ -60,7 +75,12 @@ if ($uri == 'home') {
     $monitoring    = '';
     $order         = '';
     $social        = '';
+    $printer       = '';
     $users         = '';
+    $report        = '';
+    $span_report_1 = '';
+    $span_report_2 = '';
+    $lap_penjualan = '';
 } elseif ($uri == 'kategori') {
     $dashboard     = '';
     $meta          = '';
@@ -75,7 +95,12 @@ if ($uri == 'home') {
     $monitoring    = '';
     $order         = '';
     $social        = '';
+    $printer       = '';
     $users         = '';
+    $report        = '';
+    $span_report_1 = '';
+    $span_report_2 = '';
+    $lap_penjualan = '';
 } elseif ($uri == 'meja') {
     $dashboard     = '';
     $meta          = '';
@@ -90,7 +115,12 @@ if ($uri == 'home') {
     $monitoring    = '';
     $order         = '';
     $social        = '';
+    $printer       = '';
     $users         = '';
+    $report        = '';
+    $span_report_1 = '';
+    $span_report_2 = '';
+    $lap_penjualan = '';
 } elseif ($uri == 'menu_makanan') {
     $dashboard     = '';
     $meta          = '';
@@ -105,7 +135,12 @@ if ($uri == 'home') {
     $monitoring    = '';
     $order         = '';
     $social        = '';
+    $printer       = '';
     $users         = '';
+    $report        = '';
+    $span_report_1 = '';
+    $span_report_2 = '';
+    $lap_penjualan = '';
 } elseif ($uri == 'monitoring') {
     $dashboard     = '';
     $meta          = '';
@@ -120,7 +155,12 @@ if ($uri == 'home') {
     $monitoring    = 'active';
     $order         = '';
     $social        = '';
+    $printer       = '';
     $users         = '';
+    $report        = '';
+    $span_report_1 = '';
+    $span_report_2 = '';
+    $lap_penjualan = '';
 } elseif ($uri == 'order') {
     $dashboard     = '';
     $meta          = '';
@@ -135,7 +175,12 @@ if ($uri == 'home') {
     $monitoring    = '';
     $order         = 'active';
     $social        = '';
+    $printer       = '';
     $users         = '';
+    $report        = '';
+    $span_report_1 = '';
+    $span_report_2 = '';
+    $lap_penjualan = '';
 } elseif ($uri == 'social') {
     $dashboard     = '';
     $meta          = '';
@@ -150,7 +195,32 @@ if ($uri == 'home') {
     $monitoring    = '';
     $order         = '';
     $social        = 'active';
+    $printer       = '';
     $users         = '';
+    $report        = '';
+    $span_report_1 = '';
+    $span_report_2 = '';
+    $lap_penjualan = '';
+} elseif ($uri == 'printer') {
+    $dashboard     = '';
+    $meta          = '';
+    $kontak        = '';
+    $master        = '';
+    $span_master_1 = '';
+    $span_master_2 = '';
+    $slider        = '';
+    $kategori      = '';
+    $meja          = '';
+    $menu_makanan  = '';
+    $monitoring    = '';
+    $order         = '';
+    $social        = '';
+    $printer       = 'active';
+    $users         = '';
+    $report        = '';
+    $span_report_1 = '';
+    $span_report_2 = '';
+    $lap_penjualan = '';
 } elseif ($uri == 'users') {
     $dashboard     = '';
     $meta          = '';
@@ -165,7 +235,32 @@ if ($uri == 'home') {
     $monitoring    = '';
     $order         = '';
     $social        = '';
+    $printer       = '';
     $users         = 'active';
+    $report        = '';
+    $span_report_1 = '';
+    $span_report_2 = '';
+    $lap_penjualan = '';
+} elseif ($uri == 'lap_penjualan') {
+    $dashboard     = '';
+    $meta          = '';
+    $kontak        = '';
+    $master        = '';
+    $span_master_1 = '';
+    $span_master_2 = '';
+    $slider        = '';
+    $kategori      = '';
+    $meja          = '';
+    $menu_makanan  = '';
+    $monitoring    = '';
+    $order         = '';
+    $social        = '';
+    $printer       = '';
+    $users         = '';
+    $report        = 'active open';
+    $span_report_1 = '<span class="selected"></span>';
+    $span_report_2 = 'open';
+    $lap_penjualan = 'active';
 } else {
     $dashboard     = '';
     $meta          = '';
@@ -180,7 +275,12 @@ if ($uri == 'home') {
     $monitoring    = '';
     $order         = '';
     $social        = '';
+    $printer       = '';
     $users         = '';
+    $report        = '';
+    $span_report_1 = '';
+    $span_report_2 = '';
+    $lap_penjualan = '';
 }
 ?>
 <div class="page-sidebar-wrapper">
@@ -249,12 +349,36 @@ if ($uri == 'home') {
                 </a>
             </li>
             <li class="heading">
+                <h3 class="uppercase">MENU UTILITY</h3>
+            </li>
+            <li class="tooltips <?=$printer;?>" data-container="body" data-placement="right" data-html="true" data-original-title="Printer">
+                <a href="<?=site_url('admin/printer');?>">
+                    <i class="icon-printer"></i><span class="title"> Setting Printer</span>
+                </a>
+            </li>
+            <li class="heading">
                 <h3 class="uppercase">MENU USERS</h3>
             </li>
             <li class="tooltips <?=$users;?>" data-container="body" data-placement="right" data-html="true" data-original-title="Users">
                 <a href="<?=site_url('admin/users');?>">
                     <i class="fa fa-users"></i><span class="title"> Users</span>
                 </a>
+            </li>
+            <li class="heading">
+                <h3 class="uppercase">MENU REPORT</h3>
+            </li>
+            <li class="<?=$report;?>">
+                <a href="#">
+                    <i class="fa fa-file"></i>
+                    <span class="title"> Laporan</span>
+                    <?=$span_report_1;?>
+                    <span class="arrow <?=$span_report_2;?>"></span>
+                </a>
+                <ul class="sub-menu">
+                    <li class="<?=$lap_penjualan;?>">
+                        <a href="<?=site_url('admin/lap_penjualan');?>"><i class="fa fa-arrow-circle-o-right"></i> Laporan Penjualan</a>
+                    </li>
+                </ul>
             </li>
         </ul>
     </div>
