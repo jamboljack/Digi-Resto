@@ -76,10 +76,9 @@ class Checkout extends MY_Controller
         if ($this->input->post()) {
             $param             = $this->input->post(null, true);
             $param_resto_order = $param['resto_order'];
-
-            $dataOrder = array(
-                'meja_id'       => $param['resto_order']['meja_id'],
-                'order_nama'    => strtoupper(trim($param['resto_order']['nama'])),
+            $dataOrder         = array(
+                'meja_id'       => stripHTMLtags($param['resto_order']['meja_id']),
+                'order_nama'    => strtoupper(stripHTMLtags(trim($param['resto_order']['nama']))),
                 'order_tanggal' => date('Y-m-d'),
                 'order_waktu'   => $param['resto_order']['total_waktu'],
                 'order_qty'     => $param['resto_order']['total_qty'],
