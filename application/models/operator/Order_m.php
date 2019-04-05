@@ -5,7 +5,7 @@ class Order_m extends CI_Model
 {
     public $table        = 'v_order';
     public $column_order = array(null, null, 'order_id', 'order_tanggal', 'order_nama',
-        'meja_nama', 'order_waktu', null, null, 'order_status');
+        'meja_nama', 'order_waktu', null, null, 'order_confirm', 'order_status');
     public $column_search = array('order_id', 'order_tanggal', 'order_nama', 'meja_nama');
     public $order         = array('order_id' => 'desc');
 
@@ -34,6 +34,10 @@ class Order_m extends CI_Model
         if ($this->input->post('date_to', 'true')) {
             $tgl_sampai = date('Y-m-d', strtotime($this->input->post('date_to', 'true')));
             $this->db->where('order_tanggal <=', $tgl_sampai);
+        }
+
+        if ($this->input->post('lstKonfirm', 'true')) {
+            $this->db->where('order_confirm', $this->input->post('lstKonfirm', 'true'));
         }
 
         if ($this->input->post('lstStatus', 'true')) {
@@ -89,6 +93,17 @@ class Order_m extends CI_Model
     {
         $this->db->from($this->table);
         return $this->db->count_all_results();
+    }
+
+    public function confirm_data($id)
+    {
+        $data = array(
+            'order_confirm' => 2,
+            'order_update'  => date('Y-m-d H:i:s'),
+        );
+
+        $this->db->where('order_id', $id);
+        $this->db->update('resto_order', $data);
     }
 
     public function delete_data($id)

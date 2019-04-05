@@ -29,6 +29,7 @@ class Monitoring_m extends CI_Model
 
         $this->db->from($this->table);
         $this->db->where('order_tanggal', date('Y-m-d'));
+        $this->db->where('order_confirm', 2);
 
         $i = 0;
         foreach ($this->column_search as $item) {
@@ -77,6 +78,7 @@ class Monitoring_m extends CI_Model
     {
         $this->db->from($this->table);
         $this->db->where('order_tanggal', date('Y-m-d'));
+        $this->db->where('order_confirm', 2);
 
         return $this->db->count_all_results();
     }

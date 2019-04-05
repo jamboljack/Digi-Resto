@@ -54,63 +54,6 @@
                                         <textarea class="form-control" rows="10" name="desc"><?=$detail->meta_desc;?></textarea>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label class="col-md-2 control-label">Keyword</label>
-                                    <div class="col-md-10">
-                                        <div class="input-icon right">
-                                            <i class="fa"></i>
-                                            <input type="text" class="form-control" name="keyword" placeholder="Input Keyword" value="<?=$detail->meta_keyword;?>" autocomplete="off" required />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-md-2 control-label">Author</label>
-                                    <div class="col-md-10">
-                                        <div class="input-icon right">
-                                            <i class="fa"></i>
-                                            <input type="text" class="form-control" name="author" placeholder="Input Author" value="<?=$detail->meta_author;?>" autocomplete="off" required />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-md-2 control-label">Developer</label>
-                                    <div class="col-md-10">
-                                        <div class="input-icon right">
-                                            <i class="fa"></i>
-                                            <input type="text" class="form-control" name="developer" placeholder="Input Developer" value="<?=$detail->meta_developer;?>" autocomplete="off" required />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-md-2 control-label">Robots</label>
-                                    <div class="col-md-5">
-                                        <div class="input-icon right">
-                                            <i class="fa"></i>
-                                            <select class="form-control" name="lstRobot" required>
-                                                <option value="">- Pilih -</option>
-                                                <option value="index, follow" <?php if ($detail->meta_robots=='index, follow') { echo 'selected'; } ?>>index, follow</option>
-                                                <option value="index, nofollow" <?php if ($detail->meta_robots=='index, nofollow') { echo 'selected'; } ?>>index, nofollow</option>
-                                                <option value="noindex, follow" <?php if ($detail->meta_robots=='noindex, follow') { echo 'selected'; } ?>>noindex, follow</option>
-                                                <option value="noindex, nofollow" <?php if ($detail->meta_robots=='noindex, nofollow') { echo 'selected'; } ?>>noindex, nofollow</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-md-2 control-label">Googlebots</label>
-                                    <div class="col-md-5">
-                                        <div class="input-icon right">
-                                            <i class="fa"></i>
-                                            <select class="form-control" name="lstGoogle" required>
-                                                <option value="">- Pilih -</option>
-                                                <option value="index, follow" <?php if ($detail->meta_googlebots=='index, follow') { echo 'selected'; } ?>>index, follow</option>
-                                                <option value="index, nofollow" <?php if ($detail->meta_googlebots=='index, nofollow') { echo 'selected'; } ?>>index, nofollow</option>
-                                                <option value="noindex, follow" <?php if ($detail->meta_googlebots=='noindex, follow') { echo 'selected'; } ?>>noindex, follow</option>
-                                                <option value="noindex, nofollow" <?php if ($detail->meta_googlebots=='noindex, nofollow') { echo 'selected'; } ?>>noindex, nofollow</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                             <div class="form-actions">
                                 <div class="row">
@@ -143,21 +86,11 @@ $(document).ready(function() {
         ignore: "",
         rules: {
             name: { required: true },
-            desc: { required: true },
-            keyword: { required: true },
-            author: { required: true },
-            developer: { required: true },
-            lstRobot: { required: true },
-            lstGoogle: { required: true }
+            desc: { required: true }
         },
         messages: {
             name: { required :'Nama APP required' },
-            desc: { required :'Description required' },
-            keyword: { required :'Keyword required' },
-            author: { required :'Author required' },
-            developer: { required :'Developer required' },
-            lstRobot: { required :'Robots required' },
-            lstGoogle: { required :'Googlebots required' }
+            desc: { required :'Description required' }
         },
         invalidHandler: function (event, validator) {
             success.hide();

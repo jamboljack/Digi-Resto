@@ -32,6 +32,7 @@ class Monitoring_m extends CI_Model
         $this->db->join('resto_akses a', 'v.kategori_id = a.kategori_id');
         $this->db->where('v.order_tanggal', date('Y-m-d'));
         $this->db->where('a.user_username', $this->session->userdata('username'));
+        $this->db->where('v.order_confirm', 2);
 
         $i = 0;
         foreach ($this->column_search as $item) {
@@ -83,6 +84,7 @@ class Monitoring_m extends CI_Model
         $this->db->join('resto_akses a', 'v.kategori_id = a.kategori_id');
         $this->db->where('v.order_tanggal', date('Y-m-d'));
         $this->db->where('a.user_username', $this->session->userdata('username'));
+        $this->db->where('v.order_confirm', 2);
 
         return $this->db->count_all_results();
     }
