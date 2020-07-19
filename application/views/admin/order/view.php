@@ -95,13 +95,14 @@
                             <tr>
                                 <th width="7%"></th>
                                 <th width="5%">No</th>
-                                <th width="10%">Order No</th>
+                                <th width="5%">Order No</th>
                                 <th width="10%">Tanggal</th>
                                 <th>Nama Pembeli</th>
-                                <th width="10%">Meja</th>
-                                <th width="10%">Waktu</th>
-                                <th width="10%">Qty</th>
+                                <th width="5%">Meja</th>
+                                <th width="5%">Waktu</th>
+                                <th width="5%">Qty</th>
                                 <th width="10%">Total</th>
+                                <th width="10%">Keterangan</th>
                                 <th width="10%">Konfirm</th>
                                 <th width="10%">Status</th>
                             </tr>
@@ -119,7 +120,6 @@
 
 <script type="text/javascript" src="<?=base_url();?>backend/assets/global/plugins/datatables/media/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="<?=base_url();?>backend/assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js"></script>
-
 <script type="text/javascript">
 function reload_table() {
     table.ajax.reload(null,false);
@@ -142,10 +142,18 @@ $(document).ready(function() {
             }
         },
         "columnDefs": [
-        {
-            "targets": [ 0, 1, 6, 7, 8 ],
-            "orderable": false,
-        },
+            {
+                "targets": [ 0, 1 ],
+                "orderable": false,
+            },
+            {
+                "targets": [ 0, 1, 3, 5, 6, 7, 10, 11 ],
+                "className": "text-center",
+            },
+            {
+                "targets": [ 8 ],
+                "className": "text-right",
+            }
         ],
     });
 

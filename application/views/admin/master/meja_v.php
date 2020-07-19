@@ -116,10 +116,14 @@ $(document).ready(function() {
             "type": "POST"
         },
         "columnDefs": [
-        {
-            "targets": [ 0, 1],
-            "orderable": false,
-        },
+            {
+                "targets": [ 0, 1],
+                "orderable": false,
+            },
+            {
+                "targets": [ 0, 1 ],
+                "className": "text-center",
+            }
         ],
     });
 });

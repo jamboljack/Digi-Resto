@@ -49,6 +49,7 @@ class Order extends MY_Controller
             $row[] = $r->order_waktu;
             $row[] = number_format($r->order_qty, 0, '', ',');
             $row[] = number_format($r->order_total, 0, '', ',');
+            $row[] = $r->order_catatan;
             if ($r->order_confirm == 1) {
                 $confirm = '<span class="label label-danger">Belum Konfirm</span>';
             } else {
@@ -160,6 +161,7 @@ class Order extends MY_Controller
             $row[] = number_format($r->order_detail_harga, 0, '', ',');
             $row[] = $r->order_detail_waktu;
             $row[] = number_format($r->order_detail_subtotal, 0, '', ',');
+            $row[] = $r->order_detail_keterangan;
             if ($r->order_detail_status == 1) {
                 $status = '<span class="label label-primary">Baru</span>';
             } else {
@@ -241,13 +243,13 @@ class Order extends MY_Controller
         $this->db->update('resto_order', $data);
 
         // Update Detail Order jadi Selesai
-        $dataDetail = array(
-            'order_detail_status' => 2,
-            'order_detail_update' => date('Y-m-d H:i:s'),
-        );
+        // $dataDetail = array(
+        //     'order_detail_status' => 2,
+        //     'order_detail_update' => date('Y-m-d H:i:s'),
+        // );
 
-        $this->db->where('order_id', $order_id);
-        $this->db->update('resto_order_detail', $dataDetail);
+        // $this->db->where('order_id', $order_id);
+        // $this->db->update('resto_order_detail', $dataDetail);
 
         // Item Order
         $listItem = $this->db->get_where('resto_order_detail', array('order_id' => $order_id))->result();
@@ -270,7 +272,7 @@ class Order extends MY_Controller
         $data['header']     = $this->db->get_where('resto_contact', array('contact_id' => 1))->row();
         $data['detail']     = $this->db->get_where('v_order', array('order_id' => $id))->row();
         $data['listDetail'] = $this->db->get_where('v_order_detail', array('order_id' => $id))->result();
-        $this->load->view('admin/order/printfaktur_v', $data);
+        $this->load->view('print/printfaktur_v', $data);
     }
 
     // public function cetaknotabayar($order_id)

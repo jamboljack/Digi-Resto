@@ -2,12 +2,13 @@
     <table class="shop_table shop_table_responsive cart" >
         <thead>
             <tr>
-                <th class="product-remove">&nbsp;</th>
-                <th class="product-thumbnail">&nbsp;</th>
-                <th class="product-name">Menu</th>
-                <th class="product-price">Harga</th>
-                <th class="product-quantity">Jumlah</th>
-                <th class="product-subtotal">Sub Total</th>
+                <th class="product-remove" width="5%">&nbsp;</th>
+                <th class="product-thumbnail" width="5%">&nbsp;</th>
+                <th class="product-name" width="40%">Menu</th>
+                <th class="product-price" width="10%">Harga</th>
+                <th class="product-quantity" width="10%">Jumlah</th>
+                <th class="product-subtotal" width="10%">Sub Total</th>
+                <th class="product-keterangan" width="20%">Keterangan</th>
             </tr>
         </thead>
         <tbody>
@@ -37,11 +38,14 @@
                 <td class="product-subtotal" data-title="Sub Total">
                     <span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol"></span>Rp. <span id="price_sub_format_{rowid}">{price_sub_format}</span></span>
                 </td>
+                <td class="product-keterangan" data-title="Keterangan">
+                    <input type="text" value="{keterangan}" title="Keterangan" class="input-text keterangan text" data-rowid="{rowid}"/>
+                </td>
             </tr>
             {/cart_content}
             <tr>
-                <td colspan="6" class="actions">
-                    <input type="button" class="button" id="update_cart" value="Update Order" />
+                <td colspan="7" class="actions">
+                    <!-- <input type="button" class="button" id="update_cart" value="Update Order" /> -->
                     <div class="wc-proceed-to-checkout">
                         <a href="<?=site_url('checkout');?>" class="checkout-button button alt wc-forward">Konfirmasi</a>
                     </div>
@@ -110,12 +114,11 @@
             });
         });
     });
-    ///////////////
+    
     $('#update_cart').on('click', function(event) {
         event.preventDefault();
         location.reload();
     });
-    ///////////////
 
     $('.qty').each(function(index, el) {
         $(this).on('change keyup', function(event) {
@@ -132,7 +135,6 @@
                     }
                 })
                 .done(function(res) {
-                    // console.log(res); 
                     $('#price_sub_format_'+rowid).html(res.cart_content.price_sub_format);
                     $('.cart_total_format').html(res.cart_total_format);
                 })
@@ -152,4 +154,27 @@
         });
     });
 
+
+    $('.keterangan').each(function(index, el) {
+        $(this).on('change keyup', function(event) {
+            event.preventDefault();
+            rowid      = $(this).data('rowid');
+            keterangan = $(this).val();
+            $.ajax({
+                url: "{base}/cart/update_item_keterangan/", 
+                type:'POST',
+                data:{
+                    rowid:rowid,
+                    keterangan:keterangan
+                }
+            })
+            .done(function(res) {
+                $('#price_sub_format_'+rowid).html(res.cart_content.price_sub_format);
+                $('.cart_total_format').html(res.cart_total_format);
+            })
+            .fail(function(error) {
+                console.log(error.responseText);
+            });
+        });
+    });
 </script>

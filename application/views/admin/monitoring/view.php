@@ -91,10 +91,18 @@ $(document).ready(function() {
             }
         },
         "columnDefs": [
-        {
-            "targets": [ 0 ],
-            "orderable": false,
-        },
+            {
+                "targets": [ 0 ],
+                "orderable": false,
+            },
+            {
+                "targets": [ 0, 8 ],
+                "className": "text-center",
+            },
+            {
+                "targets": [ 4, 5, 6, 7 ],
+                "className": "text-right",
+            }
         ],
     });
 

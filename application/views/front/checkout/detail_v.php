@@ -26,7 +26,7 @@
                                 <li class="total">Total :<strong><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">Rp. </span><?=number_format($Order->order_total,0,'',',');?></span></strong></li>
                             </ul>
                             <div class="clear"></div>
-                            <p>Silahkan melakukan Pembayaran setelah Anda menikmati hidangan Kami.</p>
+                            <p>Silahkan melakukan Pembayaran setelah Anda menikmati Menu Kami.</p>
                             <h2>Order Detail</h2>
                             <table class="shop_table order_details">
                                 <thead>
@@ -38,10 +38,10 @@
                                 <tbody>
                                     <?php foreach($listOrder as $r) { ?>
                                     <tr class="order_item">
-                                        <td class="product-name">
+                                        <td class="product-name" width="70%">
                                             <a href="<?=site_url('menuorder/'.$r->menu_seo);?>"><?=ucwords(strtolower($r->menu_nama));?></a> <strong class="product-quantity">× <?=$r->order_detail_qty;?></strong>
                                         </td>
-                                        <td class="product-total"><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">Rp. </span><?=number_format($r->order_detail_subtotal,0,'',',');?></span>
+                                        <td class="product-total" width="30%"><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">Rp. </span><?=number_format($r->order_detail_subtotal,0,'',',');?></span>
                                         </td>
                                     </tr>
                                     <?php } ?>

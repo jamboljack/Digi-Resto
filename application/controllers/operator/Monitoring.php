@@ -40,6 +40,7 @@ class Monitoring extends MY_Controller
             $row[] = number_format($r->order_detail_harga, 0, '', ',');
             $row[] = $r->order_detail_waktu . ' Menit';
             $row[] = number_format($r->order_detail_subtotal, 0, '', ',');
+            $row[] = $r->order_detail_keterangan;
             if ($r->order_detail_status == 1) {
                 $status = '<span class="label label-primary">Baru</span>';
             } else {

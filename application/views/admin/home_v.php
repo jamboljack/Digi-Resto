@@ -47,7 +47,7 @@
                         Income <?=getBulan(date('m')).' '.date('Y');?>
                         </div>
                     </div>
-                    <a class="more" href="<?=site_url('admin/penjualan'); ?>">
+                    <a class="more" href="<?=site_url('admin/order'); ?>">
                         Detail <i class="m-icon-swapright m-icon-white"></i>
                     </a>
                 </div>
@@ -65,7 +65,7 @@
                         Total
                         </div>
                     </div>
-                    <a class="more" href="<?=site_url('admin/penjualan'); ?>">
+                    <a class="more" href="<?=site_url('admin/order'); ?>">
                         Detail <i class="m-icon-swapright m-icon-white"></i>
                     </a>
                 </div>

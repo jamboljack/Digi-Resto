@@ -60,10 +60,11 @@
                                     <th width="10%">No Meja</th>
                                     <th width="10%">Kode</th>
                                     <th>Nama Menu</th>
-                                    <th width="10%">Qty</th>
+                                    <th width="5%">Qty</th>
                                     <th width="10%">Harga</th>
                                     <th width="10%">Waktu</th>
                                     <th width="10%">Sub Total</th>
+                                    <th width="10%">Keterangan</th>
                                     <th width="10%">Status</th>
                                 </tr>
                             </thead>
@@ -106,10 +107,18 @@ $(document).ready(function() {
             }
         },
         "columnDefs": [
-        {
-            "targets": [ 0 ],
-            "orderable": false,
-        },
+            {
+                "targets": [ 0, 1 ],
+                "orderable": false,
+            },
+            {
+                "targets": [ 0, 1, 10 ],
+                "className": "text-center",
+            },
+            {
+                "targets": [ 5, 6, 8 ],
+                "className": "text-right",
+            }
         ],
     });
 

@@ -49,6 +49,7 @@ class Order extends MY_Controller
             $row[] = $r->order_waktu;
             $row[] = number_format($r->order_qty, 0, '', ',');
             $row[] = number_format($r->order_total, 0, '', ',');
+            $row[] = $r->order_catatan;
             if ($r->order_confirm == 1) {
                 $confirm = '<span class="label label-danger">Belum Konfirm</span>';
             } else {
@@ -265,54 +266,62 @@ class Order extends MY_Controller
         $this->cetaknotabayar($order_id);
     }
 
-    public function cetaknotabayar($order_id)
+    // public function cetaknotabayar($order_id)
+    // {
+    //     $dataToko    = $this->db->get_where('resto_contact', array('contact_id' => 1))->row();
+    //     $dataOrder   = $this->db->get_where('v_order', array('order_id' => $order_id))->row();
+    //     $listItem    = $this->db->get_where('v_order_detail', array('order_id' => $order_id))->result();
+    //     $tmpdir      = sys_get_temp_dir(); # ambil direktori temporary untuk simpan file.
+    //     $file        = tempnam($tmpdir, 'cetak'); # nama file temporary yang akan dicetak
+    //     $handle      = fopen($file, 'w');
+    //     $bold0       = Chr(27) . Chr(69);
+    //     $bold1       = Chr(27) . Chr(70);
+    //     $initialized = chr(27) . chr(64);
+    //     $leftMargin  = chr(27) . chr(108) . chr(1);
+    //     $condensed   = Chr(27) . Chr(33) . Chr(4);
+    //     $draft       = Chr(27) . Chr(120) . Chr(48);
+    //     $Data        = $initialized;
+    //     $Data .= $leftMargin;
+    //     $Data .= $condensed;
+    //     $Data .= $draft;
+    //     $NamaToko   = trim($dataToko->contact_name);
+    //     $AlamatToko = trim($dataToko->contact_address);
+    //     $TelpToko   = trim($dataToko->contact_phone);
+    //     $NoOrder    = trim($dataOrder->order_id);
+    //     $Tanggal    = date('d-m-Y', strtotime($dataOrder->order_tanggal));
+    //     $Kasir      = trim($dataOrder->user_username);
+    //     $Data .= $this->addHeader($NamaToko, $AlamatToko, $TelpToko, $NoOrder, $Tanggal, $Kasir);
+    //     foreach ($listItem as $r) {
+    //         $NamaMenu = trim($r->menu_nama);
+    //         $Harga    = number_format($r->order_detail_harga, 0, '', ',');
+    //         $Qty      = number_format($r->order_detail_qty, 0, '', ',');
+    //         $Subtotal = number_format($r->order_detail_subtotal, 0, '', ',');
+    //         $Data .= $this->addItem($NamaMenu, $Harga, $Qty, $Subtotal);
+    //     }
+
+    //     $SubTotal = number_format($dataOrder->order_total, 0, '', ',');
+    //     $Diskon   = number_format($dataOrder->order_diskon, 0, '', ',');
+    //     $Total    = number_format(($dataOrder->order_total - $dataOrder->order_diskon), 0, '', ',');
+    //     $Data .= $this->addFooter($SubTotal, $Diskon, $Total);
+    //     fwrite($handle, $Data);
+    //     fclose($handle);
+    //     $time        = time();
+    //     $filename    = "Nota_" . $time;
+    //     $pdfFilePath = FCPATH . "/download/$filename.txt";
+    //     copy($file, $pdfFilePath);
+
+    //     // $printer        = $this->db->get_where('resto_printer', array('printer_tipe' => 'Nota'))->row();
+    //     // $lokasi_printer = $printer->printer_lokasi;
+    //     // copy($file, $lokasi_printer);
+    //     // unlink($file);
+    // }
+
+    public function cetaknotabayar($id)
     {
-        $dataToko    = $this->db->get_where('resto_contact', array('contact_id' => 1))->row();
-        $dataOrder   = $this->db->get_where('v_order', array('order_id' => $order_id))->row();
-        $listItem    = $this->db->get_where('v_order_detail', array('order_id' => $order_id))->result();
-        $tmpdir      = sys_get_temp_dir(); # ambil direktori temporary untuk simpan file.
-        $file        = tempnam($tmpdir, 'cetak'); # nama file temporary yang akan dicetak
-        $handle      = fopen($file, 'w');
-        $bold0       = Chr(27) . Chr(69);
-        $bold1       = Chr(27) . Chr(70);
-        $initialized = chr(27) . chr(64);
-        $leftMargin  = chr(27) . chr(108) . chr(1);
-        $condensed   = Chr(27) . Chr(33) . Chr(4);
-        $draft       = Chr(27) . Chr(120) . Chr(48);
-        $Data        = $initialized;
-        $Data .= $leftMargin;
-        $Data .= $condensed;
-        $Data .= $draft;
-        $NamaToko   = trim($dataToko->contact_name);
-        $AlamatToko = trim($dataToko->contact_address);
-        $TelpToko   = trim($dataToko->contact_phone);
-        $NoOrder    = trim($dataOrder->order_id);
-        $Tanggal    = date('d-m-Y', strtotime($dataOrder->order_tanggal));
-        $Kasir      = trim($dataOrder->user_username);
-        $Data .= $this->addHeader($NamaToko, $AlamatToko, $TelpToko, $NoOrder, $Tanggal, $Kasir);
-        foreach ($listItem as $r) {
-            $NamaMenu = trim($r->menu_nama);
-            $Harga    = number_format($r->order_detail_harga, 0, '', ',');
-            $Qty      = number_format($r->order_detail_qty, 0, '', ',');
-            $Subtotal = number_format($r->order_detail_subtotal, 0, '', ',');
-            $Data .= $this->addItem($NamaMenu, $Harga, $Qty, $Subtotal);
-        }
-
-        $SubTotal = number_format($dataOrder->order_total, 0, '', ',');
-        $Diskon   = number_format($dataOrder->order_diskon, 0, '', ',');
-        $Total    = number_format(($dataOrder->order_total - $dataOrder->order_diskon), 0, '', ',');
-        $Data .= $this->addFooter($SubTotal, $Diskon, $Total);
-        fwrite($handle, $Data);
-        fclose($handle);
-        $time        = time();
-        $filename    = "Nota_" . $time;
-        $pdfFilePath = FCPATH . "/download/$filename.txt";
-        copy($file, $pdfFilePath);
-
-        // $printer        = $this->db->get_where('resto_printer', array('printer_tipe' => 'Nota'))->row();
-        // $lokasi_printer = $printer->printer_lokasi;
-        // copy($file, $lokasi_printer);
-        // unlink($file);
+        $data['header']     = $this->db->get_where('resto_contact', array('contact_id' => 1))->row();
+        $data['detail']     = $this->db->get_where('v_order', array('order_id' => $id))->row();
+        $data['listDetail'] = $this->db->get_where('v_order_detail', array('order_id' => $id))->result();
+        $this->load->view('print/printfaktur_v', $data);
     }
 
     public function cetaknota()

@@ -17,16 +17,16 @@ class Checkout extends MY_Controller
     public function review()
     {
         $cart_content = $this->cart->contents();
-
         if ($cart_content) {
             $total_qty   = 0;
             $total_waktu = 0;
             foreach ($cart_content as $key => $value) {
-                $waktu                          = $value['waktu'];
-                $qty                            = $value['qty'];
-                $cart_content[$key]['waktu']    = $waktu;
-                $cart_content[$key]['qty']      = $qty;
-                $cart_content[$key]['subtotal'] = number_format($value['price'] * $value['qty'], 0, '', ',');
+                $waktu                            = $value['waktu'];
+                $qty                              = $value['qty'];
+                $cart_content[$key]['waktu']      = $waktu;
+                $cart_content[$key]['qty']        = $qty;
+                $cart_content[$key]['keterangan'] = ($value['keterangan'] != '' ? '(' . $value['keterangan'] . ')' : '');
+                $cart_content[$key]['subtotal']   = number_format($value['price'] * $value['qty'], 0, '', ',');
                 $total_qty += $qty;
                 $total_waktu += $waktu;
             }
@@ -48,29 +48,6 @@ class Checkout extends MY_Controller
         }
     }
 
-    // public function dobooking()
-    // {
-    //     if ($this->input->post()) {
-    //         $resto_order        = json_decode($this->input->post('resto_order'), true);
-    //         $resto_order_detail = json_decode($this->input->post('resto_order_detail'), true);
-    //         $this->db->insert('resto_order', $resto_order);
-    //         $order_id = $this->db->insert_id();
-    //         $res             = array();
-    //         $res['order_id'] = $order_id;
-    //         foreach ($resto_order_detail as $key => $value) {
-    //             $value['order_id'] = $order_id;
-    //             $this->db->insert('resto_order_detail', $value);
-    //         }
-    //         $this->cart->destroy();
-    //         if ($this->input->is_ajax_request()) {
-    //             header('Content-Type: application/json');
-    //             echo json_encode($res);
-    //         } else {
-    //             opn($res);
-    //         }
-    //     }
-    // }
-
     public function konfirmasi()
     {
         if ($this->input->post()) {
@@ -82,7 +59,6 @@ class Checkout extends MY_Controller
                 'order_tanggal' => date('Y-m-d'),
                 'order_waktu'   => $param['resto_order']['total_waktu'],
                 'order_qty'     => $param['resto_order']['total_qty'],
-                'order_catatan' => $param['resto_order']['catatan'],
                 'order_total'   => $param['resto_order']['total'],
                 'order_update'  => date('Y-m-d H:i:s'),
             );
@@ -93,13 +69,14 @@ class Checkout extends MY_Controller
             foreach ($cart_content as $key => $value) {
                 $subtotal   = ($value['qty'] * $value['price']);
                 $dataDetail = array(
-                    'order_id'              => $order_id,
-                    'menu_id'               => $value['id'],
-                    'order_detail_harga'    => $value['price'],
-                    'order_detail_qty'      => $value['qty'],
-                    'order_detail_waktu'    => $value['waktu'],
-                    'order_detail_subtotal' => $subtotal,
-                    'order_detail_update'   => date('Y-m-d H:i:s'),
+                    'order_id'                => $order_id,
+                    'menu_id'                 => $value['id'],
+                    'order_detail_harga'      => $value['price'],
+                    'order_detail_qty'        => $value['qty'],
+                    'order_detail_waktu'      => $value['waktu'],
+                    'order_detail_subtotal'   => $subtotal,
+                    'order_detail_keterangan' => strtoupper(trim($value['keterangan'])),
+                    'order_detail_update'     => date('Y-m-d H:i:s'),
                 );
 
                 $this->db->insert('resto_order_detail', $dataDetail);
@@ -118,21 +95,6 @@ class Checkout extends MY_Controller
 
     public function selesai($order_id = null)
     {
-        // $this->db->where('order_id', $order_id);
-        // $resto_order = $this->db->get('resto_order')->result();
-        // if ($resto_order) {
-        //     foreach ($resto_order as $key => $value) {
-        //         $this->db->where('order_id', $value->order_id);
-        //         $this->db->join('resto_menu', 'resto_menu.menu_id = resto_order_detail.menu_id', 'left');
-        //         $value->resto_order_detail = $this->db->get('resto_order_detail')->result();
-        //     }
-        //     $this->data['resto_order'] = $resto_order;
-        //     $data['detail_content']    = $this->parser->parse('front/checkout/detail_content.html', $this->data, true);
-        // } else {
-        //     $data['detail_content'] = $this->parser->parse('front/checkout/detail_content_empty.html', $this->data, true);
-        // }
-        // $data['class'] = 'woocommerce-checkout';
-
         $data['Order']     = $this->db->get_where('v_order', array('order_id' => $order_id))->row();
         $data['listOrder'] = $this->db->get_where('v_order_detail', array('order_id' => $order_id))->result();
         $this->template_front->display('front/checkout/detail_v', $data);

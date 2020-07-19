@@ -25,6 +25,7 @@ class Cart extends MY_Controller
                 $cart_content[$key]['qty']              = $qty;
                 $cart_content[$key]['price_format']     = number_format($value['price'], 0, '', ',');
                 $cart_content[$key]['price_sub_format'] = number_format($value['price'] * $value['qty'], 0, '', ',');
+                $cart_content[$key]['keterangan']       = $value['keterangan'];
                 $total_waktu += $waktu;
                 $total_qty += $qty;
             }
@@ -53,14 +54,16 @@ class Cart extends MY_Controller
             $this->db->where('menu_id', $param['data']['id']);
             $data = $this->db->get('resto_menu')->result_array();
             foreach ($data as $d_key => $d_value) {
-                $data[$d_key]['id']      = $d_value['menu_id'];
-                $data[$d_key]['qty']     = $param['data']['qty'];
-                $data[$d_key]['name']    = $d_value['menu_nama'];
-                $data[$d_key]['price']   = $d_value['menu_harga'];
-                $data[$d_key]['waktu']   = $d_value['menu_waktu'];
-                $data[$d_key]['img_src'] = $d_value['menu_foto'];
-                $data[$d_key]['seo']     = $d_value['menu_seo'];
+                $data[$d_key]['id']         = $d_value['menu_id'];
+                $data[$d_key]['qty']        = $param['data']['qty'];
+                $data[$d_key]['name']       = $d_value['menu_nama'];
+                $data[$d_key]['price']      = $d_value['menu_harga'];
+                $data[$d_key]['waktu']      = $d_value['menu_waktu'];
+                $data[$d_key]['img_src']    = $d_value['menu_foto'];
+                $data[$d_key]['seo']        = $d_value['menu_seo'];
+                $data[$d_key]['keterangan'] = '';
             }
+
             $this->cart->insert($data);
             $this->_display();
         }
@@ -79,8 +82,31 @@ class Cart extends MY_Controller
     {
         $res = array();
         if ($this->input->post('rowid') && $this->input->post('qty')) {
-            $param['rowid'] = $this->input->post('rowid');
-            $param['qty']   = $this->input->post('qty');
+            $param['rowid']      = $this->input->post('rowid');
+            $param['qty']        = $this->input->post('qty');
+            $this->cart->update($param);
+            $cart_content = $this->cart->contents();
+            foreach ($cart_content as $key => $value) {
+                $cart_content[$key]['price_sub_format'] = number_format($cart_content[$key]['subtotal'], 0, '', ',');
+            }
+            $res['cart_content']      = $cart_content[$param['rowid']];
+            $res['cart_total']        = $this->cart->total();
+            $res['cart_total_format'] = number_format($res['cart_total'], 0, '', ',');
+        }
+        if ($this->input->is_ajax_request()) {
+            header('Content-Type: application/json');
+            echo json_encode($res);
+        } else {
+            opn($res);
+        }
+    }
+
+    public function update_item_keterangan()
+    {
+        $res = array();
+        if ($this->input->post('rowid') && $this->input->post('keterangan')) {
+            $param['rowid']      = $this->input->post('rowid');
+            $param['keterangan'] = strtoupper(trim($this->input->post('keterangan')));
             $this->cart->update($param);
             $cart_content = $this->cart->contents();
             foreach ($cart_content as $key => $value) {

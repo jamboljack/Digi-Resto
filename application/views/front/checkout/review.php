@@ -16,14 +16,6 @@
                         <?=$review_content;?>
                     </div>
                 </div>
-
-                <!-- <div id="post-8" class="post-8 page type-page status-publish hentry">
-                    <div class="entry-content">
-                        <div class="woocommerce">
-                            <?=$review_content;?>
-                        </div>
-                    </div>
-                </div> -->
             </main>
         </div>
     </div>

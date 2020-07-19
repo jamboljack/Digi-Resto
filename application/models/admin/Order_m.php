@@ -5,8 +5,8 @@ class Order_m extends CI_Model
 {
     public $table        = 'v_order';
     public $column_order = array(null, null, 'order_id', 'order_tanggal', 'order_nama',
-        'meja_nama', 'order_waktu', null, null, 'order_confirm', 'order_status');
-    public $column_search = array('order_id', 'order_tanggal', 'order_nama', 'meja_nama');
+        'meja_nama', 'order_waktu', 'order_qty', 'order_total', 'order_catatan', 'order_confirm', 'order_status');
+    public $column_search = array('order_id', 'order_tanggal', 'order_nama', 'meja_nama', 'order_catatan');
     public $order         = array('order_id' => 'desc');
 
     public $table1         = 'v_menu';
@@ -15,7 +15,7 @@ class Order_m extends CI_Model
     public $order1         = array('menu_nama' => 'asc');
 
     public $table2         = 'v_order_detail';
-    public $column_order2  = array(null, null, null, null, null, null, null, null, null);
+    public $column_order2  = array(null, null, null, null, null, null, null, null, null, null);
     public $column_search2 = array();
     public $order2         = array('menu_nama' => 'asc');
 
@@ -35,7 +35,7 @@ class Order_m extends CI_Model
             $tgl_sampai = date('Y-m-d', strtotime($this->input->post('date_to', 'true')));
             $this->db->where('order_tanggal <=', $tgl_sampai);
         }
-        
+
         if ($this->input->post('lstKonfirm', 'true')) {
             $this->db->where('order_confirm', $this->input->post('lstKonfirm', 'true'));
         }

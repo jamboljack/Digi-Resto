@@ -5,7 +5,7 @@ class Monitoring_m extends CI_Model
 {
     public $table        = 'v_order_detail';
     public $column_order = array(null, null, 'meja_nama', 'menu_kode', 'menu_nama',
-        'order_detail_qty', 'order_detail_harga', 'order_detail_waktu', 'order_detail_subtotal',
+        'order_detail_qty', 'order_detail_harga', 'order_detail_waktu', 'order_detail_subtotal', 'order_detail_keterangan',
         'order_detail_status');
     public $column_search = array('meja_nama', 'menu_kode', 'menu_nama',
         'order_detail_qty', 'order_detail_harga', 'order_detail_waktu', 'order_detail_subtotal',
@@ -32,7 +32,7 @@ class Monitoring_m extends CI_Model
         $this->db->join('resto_akses a', 'v.kategori_id = a.kategori_id');
         $this->db->where('v.order_tanggal', date('Y-m-d'));
         $this->db->where('a.user_username', $this->session->userdata('username'));
-        $this->db->where('v.order_confirm', 2);
+        // $this->db->where('v.order_confirm', 2);
 
         $i = 0;
         foreach ($this->column_search as $item) {
@@ -84,7 +84,7 @@ class Monitoring_m extends CI_Model
         $this->db->join('resto_akses a', 'v.kategori_id = a.kategori_id');
         $this->db->where('v.order_tanggal', date('Y-m-d'));
         $this->db->where('a.user_username', $this->session->userdata('username'));
-        $this->db->where('v.order_confirm', 2);
+        // $this->db->where('v.order_confirm', 2);
 
         return $this->db->count_all_results();
     }

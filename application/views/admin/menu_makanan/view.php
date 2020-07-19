@@ -156,10 +156,18 @@ $(document).ready(function() {
             }
         },
         "columnDefs": [
-        {
-            "targets": [ 0, 1, 2 ],
-            "orderable": false,
-        },
+            {
+                "targets": [ 0, 1, 2 ],
+                "orderable": false,
+            },
+            {
+                "targets": [ 0, 1, 2 ],
+                "className": "text-center",
+            },
+            {
+                "targets": [ 6, 7 ],
+                "className": "text-right",
+            }
         ],
     });
 

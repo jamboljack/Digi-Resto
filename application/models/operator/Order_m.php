@@ -15,7 +15,7 @@ class Order_m extends CI_Model
     public $order1         = array('menu_nama' => 'asc');
 
     public $table2         = 'v_order_detail';
-    public $column_order2  = array(null, null, null, null, null, null, null, null, null);
+    public $column_order2  = array(null, null, null, null, null, null, null, null, null, null);
     public $column_search2 = array();
     public $order2         = array('menu_nama' => 'asc');
 

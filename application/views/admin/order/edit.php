@@ -152,12 +152,13 @@
                                         <tr>
                                             <th width="5%"></th>
                                             <th width="5%">No.</th>
-                                            <th width="10%">Menu Kode</th>
+                                            <th width="10%">Kode</th>
                                             <th>Nama Menu</th>
                                             <th width="10%">Qty</th>
-                                            <th width="15%">Harga</th>
-                                            <th width="10%">Waktu</th>
-                                            <th width="15%">Sub Total</th>
+                                            <th width="10%">Harga</th>
+                                            <th width="5%">Waktu</th>
+                                            <th width="10%">Sub Total</th>
+                                            <th width="15%">Keterangan</th>
                                             <th width="10%">Status</th>
                                         </tr>
                                     </thead>
@@ -235,6 +236,13 @@
 <script type="text/javascript" src="<?=base_url('backend/assets/global/plugins/jquery-validation/js/jquery.validate.min.js');?>"></script>
 <script type="text/javascript">
 $(document).ready(function() {
+    $('#tableDataMenu').on('shown.bs.modal', function () {
+       var table = $('#tableMenu').DataTable();
+       table.columns.adjust();
+    });
+});
+
+$(document).ready(function() {
     $('.number').maskMoney({thousands:',', precision:0});
     $('.digit').maskMoney({thousands:',', precision:2});
     getTotal();
@@ -255,10 +263,18 @@ $(document).ready(function() {
             "type": "POST"
         },
         "columnDefs": [
-        {
-            "targets": [ 0, 1, 4, 5, 6 ],
-            "orderable": false,
-        },
+            {
+                "targets": [ 0, 1, 4, 5, 6 ],
+                "orderable": false,
+            },
+            {
+                "targets": [ 0, 1, 5 ],
+                "className": "text-center",
+            },
+            {
+                "targets": [ 6 ],
+                "className": "text-right",
+            }
         ],
     });
 });
@@ -343,10 +359,18 @@ $(document).ready(function() {
             "type": "POST"
         },
         "columnDefs": [
-        {
-            "targets": [ 0, 1, 2, 3, 4, 5, 6, 7, 8],
-            "orderable": false,
-        },
+            {
+                "targets": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ],
+                "orderable": false,
+            },
+            {
+                "targets": [ 0, 1, 4, 6, 9 ],
+                "className": "text-center",
+            },
+            {
+                "targets": [ 5, 7 ],
+                "className": "text-right",
+            }
         ],
     });
 });
@@ -737,7 +761,6 @@ function resetformBayar() {
 function printNota(order_id) {
     var url = "<?=site_url('admin/order/cetaknotabayar/');?>"+order_id;
     window.open(url, "_blank");
-    // location.reload();
 }
 </script>
 
