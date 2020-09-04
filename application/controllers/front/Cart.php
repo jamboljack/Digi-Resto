@@ -82,8 +82,8 @@ class Cart extends MY_Controller
     {
         $res = array();
         if ($this->input->post('rowid') && $this->input->post('qty')) {
-            $param['rowid']      = $this->input->post('rowid');
-            $param['qty']        = $this->input->post('qty');
+            $param['rowid'] = $this->input->post('rowid');
+            $param['qty']   = $this->input->post('qty');
             $this->cart->update($param);
             $cart_content = $this->cart->contents();
             foreach ($cart_content as $key => $value) {
@@ -103,24 +103,25 @@ class Cart extends MY_Controller
 
     public function update_item_keterangan()
     {
-        $res = array();
+        $res = '';
         if ($this->input->post('rowid') && $this->input->post('keterangan')) {
             $param['rowid']      = $this->input->post('rowid');
             $param['keterangan'] = strtoupper(trim($this->input->post('keterangan')));
             $this->cart->update($param);
             $cart_content = $this->cart->contents();
-            foreach ($cart_content as $key => $value) {
-                $cart_content[$key]['price_sub_format'] = number_format($cart_content[$key]['subtotal'], 0, '', ',');
+
+            if (!empty($cart_content)) {
+                foreach ($cart_content as $key => $value) {
+                    $cart_content[$key]['price_sub_format'] = number_format($cart_content[$key]['subtotal'], 0, '', ',');
+                }
+                $res['cart_content']      = $cart_content[$param['rowid']];
+                $res['cart_total']        = $this->cart->total();
+                $res['cart_total_format'] = number_format($res['cart_total'], 0, '', ',');
             }
-            $res['cart_content']      = $cart_content[$param['rowid']];
-            $res['cart_total']        = $this->cart->total();
-            $res['cart_total_format'] = number_format($res['cart_total'], 0, '', ',');
         }
         if ($this->input->is_ajax_request()) {
             header('Content-Type: application/json');
             echo json_encode($res);
-        } else {
-            opn($res);
         }
     }
 

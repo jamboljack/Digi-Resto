@@ -15,13 +15,13 @@ page {
   	padding-left: 0.3cm;
   	padding-bottom: 0.5cm;
 }
-page[size="A4"] {  
+page[size="A4"] {
   	width: 21cm;
-  	height: 29.7cm; 
+  	height: 29.7cm;
 }
 page[size="A4"][layout="portrait"] {
   	width: 29.7cm;
-  	height: auto;  
+  	height: auto;
 }
 page[size="A3"] {
   	width: 29.7cm;
@@ -29,7 +29,7 @@ page[size="A3"] {
 }
 page[size="A3"][layout="portrait"] {
   	width: 42cm;
-  	height: 29.7cm;  
+  	height: 29.7cm;
 }
 page[size="A5"] {
   	width: 14.8cm;
@@ -37,16 +37,14 @@ page[size="A5"] {
 }
 page[size="A5"][layout="portrait"] {
   	width: 21cm;
-  	height: 14.8cm;  
+  	height: 14.8cm;
 }
 table {
-    border: 1px solid;
     border-collapse: collapse;
     width: 100%;
 }
 
-table, th, td {
-	border: 1px solid black;
+th, td {
     padding: 2px;
     font-size: 12px;
 }
@@ -54,14 +52,14 @@ table, th, td {
 th {
 	height: 40px;
 	text-align: center;
-}	
+}
 
 th {
 	height: 20px;
     background-color: #eff3f8;
     color: black;
 }
-	
+
 th {
 	padding: 5px;
 }
@@ -69,6 +67,11 @@ th {
 td.label {
 	padding-top: 30px;
     padding-bottom: 30px;
+}
+
+body{
+    font-family: "Franklin Gothic Medium";
+    font-size: 12px;
 }
 
 @media print{
@@ -83,8 +86,18 @@ td.label {
 <a href="#Print">
     <img src="<?=base_url('img/print.png');?>" height="24" width="20" title="Print Laporan" id="print-link" onClick="window.print(); return false;" />
 </a>
+<?php 
+$kategori = $this->uri->segment(6);
+if ($kategori != 'all') {
+	$dataKategori = $this->db->get_where('resto_kategori', array('kategori_id' => $kategori))->row();
+	$kategori     = 'KATEGORI : '.$dataKategori->kategori_nama;
+} else {
+	$kategori     = 'SEMUA KATEGORI';
+}
+?>
 <page size="A4">
 	<h3 align="center">LAPORAN PENJUALAN</h3>
+	<p align="center">PERIODE : <?=tgl_indo(date('Y-m-d', strtotime($this->uri->segment(4)))).' s/d '.tgl_indo(date('Y-m-d', strtotime($this->uri->segment(5))));?><br><?=$kategori;?></p>
 	<table width="100%" cellpadding="1" cellspacing="0" border="1">
 		<tr>
 			<th width="3%">NO</th>
@@ -93,30 +106,37 @@ td.label {
 			<th width="10%">HARGA</th>
 			<th width="10%">TOTAL</th>
 		</tr>
-		<?php 
-		$qty    = 0;
-		$total 	= 0;
-		$no 	= 1;
-		foreach($listData as $r) {
-		?>
+		<?php
+		$qty   = 0;
+		$total = 0;
+		$no    = 1;
+		foreach ($listData as $r) {
+    	?>
 		<tr>
 			<td align="center" valign="top"><?=$no;?></td>
 			<td valign="top"><?=$r->menu_nama;?></td>
-            <td valign="top" align="right"><?=number_format($r->order_detail_qty,0,'',',');?></td>
-            <td valign="top" align="right"><?=number_format($r->order_detail_harga,0,'',',');?></td>
-            <td valign="top" align="right"><?=number_format($r->order_detail_subtotal,0,'',',');?></td>
+            <td valign="top" align="right"><?=number_format($r->order_detail_qty, 0, '', ',');?></td>
+            <td valign="top" align="right"><?=number_format($r->order_detail_harga, 0, '', ',');?></td>
+            <td valign="top" align="right"><?=number_format($r->order_detail_subtotal, 0, '', ',');?></td>
 		</tr>
-		<?php 
+		<?php
 			$qty   = ($qty + $r->order_detail_qty);
-			$total = ($total + $r->order_detail_subtotal);
-			$no++;
-		} 
+		    $total = ($total + $r->order_detail_subtotal);
+		    $no++;
+		}
 		?>
 		<tr>
 			<td align="center" colspan="2"><b>TOTAL</b></td>
-			<td align="right"><b><?=number_format($qty,0,'',',');?></b></td>
+			<td align="right"><b><?=number_format($qty, 0, '', ',');?></b></td>
 			<td align="right"></td>
-			<td align="right"><b><?=number_format($total,0,'',',');?></b></td>
+			<td align="right"><b><?=number_format($total, 0, '', ',');?></b></td>
+		</tr>
+	</table>
+	<br><br>
+	<table>
+		<tr>
+			<td width="60%"></td>
+			<td width="40%" align="center">Kudus, <?=date('d-m-Y');?><br><br><br><br><br><br><?=$this->session->userdata('nama');?></td>
 		</tr>
 	</table>
 </page>

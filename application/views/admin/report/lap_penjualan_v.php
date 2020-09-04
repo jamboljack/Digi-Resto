@@ -44,9 +44,9 @@
                                             <label class="col-md-3 control-label">Periode</label>
                                             <div class="col-md-9">
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control date-picker" name="tgl_dari" id="tgl_dari" placeholder="Dari" data-date-format="dd-mm-yyyy">
+                                                    <input type="text" class="form-control date-picker" name="tgl_dari" id="tgl_dari" placeholder="Dari" data-date-format="dd-mm-yyyy" value="<?=date('d-m-Y');?>">
                                                     <span class="input-group-addon"><b>s/d</b></span>
-                                                    <input type="text" class="form-control date-picker" name="tgl_sampai" id="tgl_sampai" placeholder="Sampai" data-date-format="dd-mm-yyyy">
+                                                    <input type="text" class="form-control date-picker" name="tgl_sampai" id="tgl_sampai" placeholder="Sampai" data-date-format="dd-mm-yyyy" value="<?=date('d-m-Y');?>">
                                                 </div>
                                             </div>
                                         </div>
@@ -85,22 +85,8 @@
 
 <script type="text/javascript">
 function printpreview() {
-    var tgl_dari = $("#tgl_dari").val();
-    var dari;
-    if (tgl_dari == '') {
-        dari     = 'all';
-    } else {
-        dari     = tgl_dari;
-    }
-
-    var tgl_sampai = $("#tgl_sampai").val();
-    var sampai;
-    if (tgl_sampai == '') {
-        sampai     = 'all';
-    } else {
-        sampai     = tgl_sampai;
-    }
-
+    var dari   = $("#tgl_dari").val();
+    var sampai = $("#tgl_sampai").val();
     var kat = $("#lstKategori").val();
     var kategori;
     if (kat == '') {
@@ -110,6 +96,6 @@ function printpreview() {
     }
 
     var url         = "<?=site_url('admin/lap_penjualan/preview/');?>"+dari+"/"+sampai+"/"+kategori;
-    window.open(url, "_blank"); // Open New Tab
+    window.open(url, "_blank");
 }
 </script>

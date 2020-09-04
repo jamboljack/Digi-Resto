@@ -6,6 +6,7 @@ $route['kategori/(:any)']             = 'front/kategori/tipe/$1';
 $route['menuorder/(:any)']            = 'front/menuorder/detail/$1';
 $route['cart']                        = 'front/cart';
 $route['cart/additem']                = 'front/cart/additem';
+$route['cart/destroy']                = 'front/cart/destroy';
 $route['cart/remove_item/(:any)']     = 'front/cart/remove_item/$1';
 $route['cart/update_item']            = 'front/cart/update_item';
 $route['cart/update_item_keterangan'] = 'front/cart/update_item_keterangan';
